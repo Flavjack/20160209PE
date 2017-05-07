@@ -1,10 +1,10 @@
 ---
-title: Bookdown tecnichal document template
-author: 'Flavio Lozano Isla'
-description: Document template for scientific report
+title: Echophysiological study of germination and initial development in _Jatropha curcas_ during storage and salinity stress
+author: 'Flavio Lozano-Isla, Mariana L.O. Campos, Lauricio Endres, Agnaldo R. Chaves, Egidio B. Neto, Marcelo F. Pompelli'
+description: paper for publication
 date: '`r Sys.Date()`'
-url: https\://flavjack.github.io/bookdown-doctemp/
-github-repo: flavjack/bookdown-doctemp
+url: https\://flavjack.github.io/20160902PE/
+github-repo: flavjack/20160902PE
 cover-image: img/cover.jpg
 favicon: img/favicon.ico
 site: bookdown::bookdown_site
@@ -16,7 +16,7 @@ colorlinks: yes
 bibliography: 
 - book.bib
 - packages.bib
-csl: plos-one.csl
+csl: biomass-and-bioenergy.csl
 # https://www.zotero.org/styles
 ---
 
@@ -36,7 +36,6 @@ library(tidyr)
 library(GerminaR)
 library(agricolae)
 library(gsheet)
-library(htmlTable)
 library(knitr)
 library(cowplot)
 library(png)
@@ -48,9 +47,9 @@ library(citr)
 
 # Abstract {-}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. _Nulla facilisi_ Ut fringilla. **Suspendisse potenti** Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. 
+_Jatropha curcas_ L. is a plant that can be used in the production of biofuel, whose species presents strong resistance to drought. However, the crop presents two important problems: i) rapid loss of viability, resulting from the high respiratory rate of the seeds during the storage period; ii) seed sensitivity when germinated under salinity conditions. To achieve these objectives, two experiments were developed. In the first experiment were verified how the storage of seeds in a drier environment can influence germination, respiration rate and the main biochemical and physiological parameters. In the second experiment, we studied the effect of the addition of five different concentrations of NaCl (0, 50, 75, 100 and 150 mM) under the parameters of germination and initial growth of five accessions of _J. curcas_ originating from different producing regions of Brazil. The results of the first experiment show that the use of desiccant, can stabilized the germinability of the seeds stored, a fact corroborated by the reduction of the water potential of the seeds and the strong reduction of the respiratory rates. On the other hand, we showed that _Jatropha curcas_ presents a moderate tolerance to salinity, being able to germinate up to 150 mM NaCl, even though a drastic reduction in the biomass accumulation was observed with the increase of the salt concentration in the irrigation water. The results show that the germination was reduced to values close to 4% in the treatment of 150 mM, while the average time of germination increased with the increase in the concentration of salts. In the biometric and biomass variables, the dry weight of the leaf, leaf area, plant length and total biomass were strongly affected by the increase of the salts, while in the biomass allocation parameters, accumulation was observed in the stem of the seedlings. In this sense, genotypes 114, 171 and 183 were shown to be potentially tolerant while genotypes 218 and 133 were sensitive.
 
 
-**Key words:** Lorem, ipsum, dolor, sit amet, consectetur.
+**Key words:** salinity tolerance, seed germination, biomass, biofuel, NaCl
 
 
