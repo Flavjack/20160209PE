@@ -1,38 +1,77 @@
-# Material and methods
+# Materials and methods
 
-## Nulla metus metus
+**Aging tests.** To test the effect of storage on seed viability, an artificial aging test was used to reduce the water content in the interstices of the seeds with a desiccant material composed of silica gel (Sigma-Aldrish, No. 10087). The genotype used in this experiment was 171 from Maceió, Alagoas. In each experimental unit 50 seeds of *J. curcas*, arranged in germbox type boxes (110 x 110 x 35 mm) were added under a stainless steel mesh suspended 2 cm from the desiccant. Five storage times (i.e., 0, 3, 6, 9, 12 months) were tested and stored under refrigerator condition at a temperature set at 4 ± 2 °C. After each storage period, the seeds were placed to germinate.
 
-Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante (Table \@ref(tab:functions)).
+**Biochemical analysis of the seeds used in the aging test.** A portion of 10% of the samples in each storage period was carefully ground in liquid nitrogen and stored at -20 °C until use. For the analysis of total soluble carbohydrates (CST), total soluble amino acids (AST) and starch (AMD), the samples were solubilized in 50% (v/v) ethanol [@trethewey1998combined], whereas for analysis of total soluble proteins (PST), the samples were extracted in Stitt buffer [@armengaud2009multilevel]. The methodologies described in Dubois [@dubois1956colorimetric], Bradford [@bradford1976rapid] and Moore and Stein [@moore1954modified] were used for the analysis of starch, total soluble carbohydrates, total soluble proteins and soluble amino acids, respectively. For the quantification of the oil content (TDO) the methodology described in detail by Ahmad [@ahmad1981ricinoleic] and for the determination of glucose (GLC), fructose (FTS) and sucrose (SCR) [@stitt198932], coupled to the production of 6-phosphogluconate, in the sequential presence of hexokinase, phosphoglucoisomerase, glucose-6-phosphate dehydrogranase and invertase enzymes. All these analyzes were performed in triplicate.
 
+**Physiological analyzes coupled to the aging test.** The relative water content (TDA) of seeds was calculated as described in detail in Vertucci [@vertucci1993predicting] and Moncaleano-Escandon [@moncaleano2013germination]. The water potential (PTH) of the seeds was quantified with the dew point water potential meter (WP4C; Decagon Devices, Pullman, WA, USA), where the seeds were lightly cracked to allow water to pass through the seeds to the internal environment. The values were obtained in MPa. For respiratory rate estimation (TRS), 5% of the seeds used in each storage period were inserted whole in a CO~2~ flow chamber (6400-09; LiCOR, Lincoln, NE, USA). For each storage time, 10 different samples were used as replicates. In each measurement procedure of liquid respiration, three cycles of 102 seconds were performed, with a 2 second interval between the readings. During this time the increase in CO~2~ concentration inside the chamber was monitored. The reference CO~2~ was calibrated, at each measurement, according to the CO~2~ concentration of the environment (~ 400 μmol CO~2~ m^-2^ s^-1^). The net respiration rate was expressed, therefore in μmol CO~2~ h^-1^ g^-1^ seed.
 
-```{r functions, echo=FALSE}
+**Germination tests with aged seeds.** At each evaluation time, 25 seeds of *J. curcas* were removed from the storage system and germinated in germbox boxes (110 x 110 x 35 mm) containing two sheets of germtest paper soaked with 2x the weight of the paper in water and were sealed and placed in a NT 708 growth chamber (New Technical Instruments, Piracicaba, SP, Brazil). The incubator was equipped with four cold white fluorescent lamps of 20 W with 40 μmoles m^-2^ s^-1^ at the level of the germination boxes. The photoperiod was 12 h and the temperature conditions were 25 ± 0.5 °C. Germination assessments were given daily for a period of 25 days. It was considered germinated, the seed whose radicle has emerged from the integument.
 
-funct <- dplyr::data_frame(
+**Germination tests in the presence of NaCl.** The germination experiment was carried out in a greenhouse at the Federal University of Pernambuco, Department of Botany, Recife, PE (S 8°02"59.0' W 34°56"54.9', 4 masl), the average temperature being recorded during the experiments Of 30.6 ± 1.1 °C with a mean relative humidity of 70.4 ± 5.8%. Five different concentrations of NaCl (0, 50, 75, 100 and 150 mM) were tested in the irrigation water, with 0 mM NaCl free treatment in five genotypes of *J. curcas* (Table \@ref(tab:genotypes)). Before seeding, the seeds were disinfected with NaOCl (2%) for 10 minutes and triply rinsed with distilled water. Next, the seeds were germinated in polypropylene trays (20 x 20 x 5 cm) containing 2500 g of river washed sand, air-dried; Each system containing 25 seeds was considered as an experimental unit. The pots were irrigated daily with 300 mL of water containing Hoagland nutrient solution [@epstein1972mineral] at the final concentration of 25%, this being the volume of irrigation required (ie, previously tested) to leach excess salts and prevent their accumulation in soil. The experiment was evaluated daily for 25 days until the seedlings were collected.
+
+**Plant material.** Seeds of *J. curcas* were supplied by EMBRAPA Agroenergia (Brasília, DF - Brazil), where they were kept at 4 °C until their use, Table \@ref(tab:genotypes).
+
+```{r genotypes}
+
+gnt <- dplyr::data_frame(
   
-  "Function" = c("ger_summary", "ger_intime", "fplot", "GerminaQuant", "prosopis"),
+  Genotype = c(
+    "183", 
+    "114", 
+    "218", 
+    "171",
+    "133"),
   
-  "Description"= c(
-    
-    "Calculate ten germination indices maintaining the factors levels for analysis of variance",
-    "Calculates and displays cumulative germination data.",
-    "Function that allows to graphic the results in bar or line plot.",
-    "Runs the interactive application in offline mode for use on a personal computer.",
-    "Dataset with germination experiment in *Prosopis juliflor* seeds under under different osmotic potentials and temperatures.")
+  City = c(
+    "Jaíba",
+    "Umuarama",
+    "São Miguel do Araguaia",
+    "Maceió",
+    "Santa Inês"),
+  
+  State = c(
+    "Minas Gerais",
+    "Paraná",
+    "Goiás", 
+    "Alagoas",
+    "Maranhão"),
+  
+  Location = c(
+
+"23°47'55.0'' S 53°18'48'' W" ,
+"15°10'27.0'' S 43°53'18'' W",
+"13°55'57.0'' S 50°09'17'' O",
+"09°27'60.0'' S 35°49'41'' W",
+"03°39'24.9'' S 45°22'36'' W" ),
+
+  "Altitude (masl)" = c(
+      478,
+      430,
+      350,
+      131,
+      31)
+         
 )
 
 knitr::kable(
-  funct, 
+  gnt,
   booktabs = TRUE,
-  caption = "Main functions in the GerminaR R package for seed germination variables and graphical analysis."
-  )
+  caption = "Information and location of the five accessions of *Jatropha curcas* studied under salinity conditions with the objective of evaluating the germination parameters and initial development of the seedlings."
+)
+
+
 ```
 
-##  Morbi lacinia
 
-Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. 
+**Evaluation of germination parameters.** For the two experiments the different germination parameters were calculated: germination percentage (PGR), mean germination time (TMG), germination uncertainty (ICG) and germination synchrony (SNG). All calculations, graphs and statistics were performed from the GerminaR package [@R-GerminaR].
 
-## Proin sodales
+**Evaluation of biometric parameters and biomass.** The mean seedling length (CMP) and mean stem diameter (DMC) were evaluated at the end of the experiment [@moncaleano2013germination]. For this, the seedlings were collected and separated into three components: leaves, stems and roots. The height of the plants was measured by means of a ruler calibrated in mm and the diameter of the stem measured by a digital caliper (Digital Caliper, ROHS, ZAAS Precision, Piracicaba, SP). Leaf area (AF) was evaluated by plant and experimental unit (AFT) [@pompelli2012allometric]. The dry biomass was estimated from drying the fabrics in a forced ventilation oven at 70 °C; 72 hours. Leaf dry weight (PSF), dry stem weight (PSC) and root dry weight (PSR) were used to calculate several biomass parameters, such as: total dry weight (PST); Aerial part dry weight (PSA); Leaf weight ratio (RPF; leaf dry weight divided by total dry weight); Dry stem weight ratio (RPC; stem dry weight divided by total dry weight); (RPA, split dry weight divided by total dry weight) and root dry weight ratio (RPR, root dry weight divided by total dry weight).
+
+**Experimental design and statistical analysis.** Both germination experiments were conducted in a completely randomized design. For the seed storage experiment, five storage times (0, 3, 6, 9 and 12 months) were used. The data for the 9 and 12 month plots of the aging experiment were submitted to the calculation of the lost plot. The salinity experiment was composed of a factorial, where five genotypes of *J. curcas* were tested, and five different concentrations of NaCl in irrigation water (0, 50, 75, 100 and 150 mM) were tested. Each treatment consisted of four replicates with 25 seeds. Statistical analysis and generation of graphs were performed in the statistical software R [@R-base]. The analysis of variance (ANOVA) was performed to evaluate the differences between the factors and the comparison of the means with the Student-Newman-Keuls test (p <0.05) [@R-agricolae]. For the multivariate analysis, correlation analysis was performed [@R-agricolae; @R-corrplot] and principal components analysis [@R-FactoMineR].
 
 
-Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam. Aenean laoreet. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede. Ut orci risus, accumsan porttitor, cursus quis, aliquet eget, justo. Sed pretium blandit orci. Ut eu diam at pede suscipit sodales. Aenean lectus elit, fermentum non, convallis id, sagittis at, neque. Nullam mauris orci, aliquet et, iaculis et, viverra vitae, ligula. Nulla ut felis in purus aliquam imperdiet. 
+
+
+
 
