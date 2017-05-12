@@ -332,12 +332,12 @@ knitr::include_graphics("img/correlation.png")
 
 The cumulative germination presented differences for each of the genotypes. It was observed that, irrespective of access, germination in the treatments without stress began between the 3rd and 4th day after sowing; Whereas for the treatments with NaCl addition the maximum values of germination were observed between the 9th and 12th day (Figure 7A-E). Regardless of the evaluated genotype, germination was observed on the 3rd day in the control, while in the 50 mM and 75 mM treatments the germination was generally initiated on the 4th day, values that were elevated with 100 mM (5th day) and 150 mM NaCl (7th day). However, regardless of treatments and salinity levels, germination became stable from day 13 (Figure 7F).
 
-```{r 20160902PE, eval=FALSE}
+```{r 20160902PE}
 url <- "https://docs.google.com/spreadsheets/d/1dllWXzFE9ndO4ujbT2JPynvp9sDrDLpG5YCRO0KJn-c/edit#gid=439833954"
 fb <- gsheet::gsheet2tbl(url) %>% as_data_frame()
 ```
 
-```{r Germination, eval=F}
+```{r jcger, fig.align='center', fig.cap= "Percentage of germination (A), mean germination time (B), germination synchrony (C) and germination uncertainty (D) evaluated in five genotypes of *Jatropha curcas* L. under different NaCl concentrations (0, 50, 75, 100 And 150 mM). The vertical bars represent the mean (± SE). The mean differences between the accessions are represented by different capital letters and between salt levels by different lowercase letters (SNK, p ≤ 0.05). N = 4"}
 
 # germination data --------------------------------------------------------
 
@@ -348,112 +348,94 @@ dtg <- fb %>%
   mutate_at(vars(starts_with("D")),funs(as.numeric)) %>% 
   mutate(Genotype = as.factor(Genotype))
 
-dtg$Genotype <-   plyr::mapvalues(dtg$Genotype , from = c("G1", "G2", "G3", "G4", "G5"),
-                                  to = c("183", "114", "218", "171", "133"))
+#dtg$Genotype <-   plyr::mapvalues(dtg$Genotype , from = c("G1", "G2", "G3", "G4", "G5"),
+#                                  to = c("183", "114", "218", "171", "133"))
+
 smg <- ger_summary(SeedN = "SDN", evalName = "D", data = dtg)
 
 # germination percentage --------------------------------------------------
 
 av <- aov(GRP ~ Genotype*Salt, smg)
 mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>% 
-  arrange(Genotype) %>%
+  arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
   mutate( s = c("Ba", "Bb", "Bb", "Dc", "Ac", 
                 "Aa", "Aa", "Ab", "Dc", "Ac",
                 "Da", "Ba", "Ca", "Ca", "Ab",
                 "Ba", "Bc", "Ab", "Ab", "Ad",
                 "Ca", "Ba", "Ba", "Ba", "Ab" ))
 
-grp <-  GerminaR::fplot(mc, type = "bar",
+grp <-  GerminaR::fplot(mc, type = "bar", color = F,
                         x = "Genotype", xlab = "Genotypes",
                         y =  "mean", ylab = "Germination ('%')",
-                        z = "Salt")
+                        z = "Salt", lgl = "NaCl (mM)",
+                        erb = T, sig = "s", 
+                        lmt = c(0,100), 
+                        brk = 10)+
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))
 
 
 # mean germination time ---------------------------------------------------
 
+
 av <- aov(MGT ~ Genotype*Salt, smg)
-summary(av)
-mc <- SNK.test(av, c("Genotype", "Salt"))
-sm <- dtsm(mc)
-sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
+mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>% 
+  arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
   mutate( s = c("Aa", "Ab", "Ab", "Ac",  
                 "Ba", "Ab", "Ab", "Ac", "Cc",
                 "Ba", "Aa", "Ab", "Ac", "Bc",
                 "Ba", "Ab", "Ab", "Ab", "Cc",
                 "Aa", "Aa", "Aa", "Ab", "Ac" ))
 
-# sm <- edit(sm)
-
-mgtt <- sm %>% 
-  select(Genotype, Salt, mean, ste, s) %>%  
-  mutate(mean = round(mean,2), ste = round(ste,2)) %>% 
-  unite(var, mean, ste, sep = " ? ") %>% 
-  unite(MGT, var, s, sep = " ")
-
-mgt <- GerminaR::fplot(sm, type = "bar",
-             x = Genotype, y =  mean,  z = Salt,
-             ylab = "tempo m?dio da germina??o (dias)" , xlab = "" ,
-             lgl = "Sal (mM)" , lgd = "top",
-             lmt = c(0, 15), brk = 0:20*1,
-             sig = s, erb = T) + scale_fill_grey(expression("NaCl (mM)"), start = 1, end = 0) +
-  scale_x_discrete(expression(" "), labels = c(183, 114, 218, 171, 133))
+mgt <-  GerminaR::fplot(mc, type = "bar", color = F,
+                        x = "Genotype", xlab = "Genotypes",
+                        y =  "mean", ylab = "Mean germination time (days)",
+                         z = "Salt", lgl = "NaCl (mM)",
+                        erb = T, sig = "s", 
+                        lmt = c(0,15), 
+                        brk = 1)+
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))
 
 
 # sinchrony ---------------------------------------------------------------
 
-
 av <- aov(SYN ~ Genotype*Salt, smg)
-summary(av)
-mc <- SNK.test(av, c("Genotype", "Salt"))
-sm <- dtsm(mc)
-sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
+mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>% 
+  arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
   mutate( s = c("Aa", "Aa", "Aa", "Bb",  
                 "Aa", "Aa", "Aa", "Bb", 
                 "Aa", "Aa", "Bb", "Bb", "Ab",
                 "Aa", "Aa", "Aa", "Aa", "Aa",
                 "Aa", "Ab", "Aa", "Ab", "Ac" ))
 
-synt <- sm %>% 
-  select(Genotype, Salt, mean, ste, s) %>%  
-  mutate(mean = round(mean,2), ste = round(ste,2)) %>% 
-  unite(var, mean, ste, sep = " ? ") %>% 
-  unite(SYN, var, s, sep = " ")
-
-syn <- GerminaR::fplot(sm, type = "bar",
-             x = Genotype, y =  mean,  z = Salt,
-             ylab = "sincronia da germina??o" , xlab = "" ,
-             lgl = "Sal (mM)" , lgd = "none",
-             lmt = c(0, 0.351), brk = 0:35*0.05,
-             sig = s, erb = T) + scale_fill_grey(expression("NaCl (mM)"),start = 1, end = 0) +
-  scale_x_discrete(expression("gen?tipos"), labels = c(183, 114, 218, 171, 133)) 
+syn <-  GerminaR::fplot(mc, type = "bar", color = F,
+                        x = "Genotype", xlab = "Genotypes",
+                        y =  "mean", ylab = "Germination sinchrony",
+                         z = "Salt", lgl = "NaCl (mM)",
+                        erb = T, sig = "s", 
+                        lmt = c(0,0.4))+
+  scale_x_discrete("Genotypes",labels = c("183", "114", "218", "171", "133"))
 
 
 # uncertany ---------------------------------------------------------------
 
 av <- aov(UNC ~ Genotype*Salt, smg)
-summary(av)
-mc <- SNK.test(av, c("Genotype", "Salt"))
-sm <- dtsm(mc)
-sm <- sm %>%  arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
+mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>% 
+  arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
   mutate( s = c("Aa", "Aa", "Aa", "Bb", "Ac",
                 "Aa", "Aa", "Aa", "Bb", "Ab",
                 "Bb", "Aa", "Aa", "Aa", "Ac",
                 "Aa", "Aa", "Aa", "Aa", "Ab",
                 "Aa", "Aa", "Ab", "Aa", "Ab" ))
 
-unct <- sm %>% 
-  select(Genotype, Salt, mean, ste, s) %>%  
-  mutate(mean = round(mean,2), ste = round(ste,2)) %>% 
-  unite(var, mean, ste, sep = " ? ") %>% 
-  unite(UNC, var, s, sep = " ")
+unc <-  GerminaR::fplot(mc, type = "bar", color = F,
+                        x = "Genotype", xlab = "Genotypes",
+                        y =  "mean", ylab = "Germination uncertany (bits)",
+                         z = "Salt", lgl = "NaCl (mM)",
+                        erb = T, sig = "s", 
+                        lmt = c(0,4))+
+  scale_x_discrete("Genotypes",labels = c("183", "114", "218", "171", "133"))
 
-unc <- GerminaR::fplot(sm, type = "bar",
-             x = Genotype, y =  mean,  z = Salt,
-             ylab = "incerteza da germina??o (bits)", xlab = "" ,
-             lgl = "Sal (mM)" , lgd = "none",
-             lmt = c(0, 3.5), brk = 0:20*.5,
-             sig = s,erb = T) + scale_fill_grey(expression("NaCl (mM)"),start = 1, end = 0) +
-  scale_x_discrete(expression("gen?tipos"), labels = c(183, 114, 218, 171, 133)) 
+
 
 
 # germination multiplot ---------------------------------------------------
@@ -469,9 +451,124 @@ grmplot <- ggdraw() +
 
 #grmplot <- plot_grid(grp, mgt, syn, unc, ncol = 2, labels = "AUTO")
 
-cowplot::ggsave("grmplot.tiff", dpi= 300, width = 210*0.9 , height = 297*0.5, units = "mm")
+cowplot::ggsave("img/grmplot.png", dpi= 300, width = 210*0.9 , height = 297*0.5, units = "mm")
+
+knitr::include_graphics("img/grmplot.png")
 
 ```
+
+```{r gerit, fig.align='center', fig.cap="Cumulative germination in the time evaluated in five genotypes of *Jatropha curcas* L. under different concentrations of NaCl (0, 50, 75, 100 and 150 mM). (A) Genotype 183. (B) Genotype 114. (C) Genotype 218. (D) Genotype 171. (E) Genotype 133. (F) Average germination of five genotypes per NaCl concentration in irrigation water."}
+
+## Germination in Time
+
+# G1 ----------------------------------------------------------------------
+
+grg <- dtg %>% 
+  filter(Genotype == "G1") %>% 
+  mutate(Salt = factor(Salt,c(0, 50, 75, 100, 150)))
+
+dgt <- ger_intime(Factor = "Salt",SeedN = "SDN", evalName = "D", data = grg)
+
+dgt <- dgt %>% mutate(Salt = factor(Salt, c(0, 50, 75, 100, 150)))
+
+G1 <- fplot(data = dgt, type = "line", x = "evaluation", y = "mean", z = "Salt", 
+            lmt = c(0,90), brk = 10, ylab = "Germination ('%')", 
+            lgd = c(0.12, 0.75), lgl = "NaCl (mM)") +
+  scale_x_discrete(expression("day"), breaks = 0:25*1) + 
+  scale_color_grey("NaCl (mM)", start = 0, end = 0) + scale_shape_discrete("NaCl (mM)")
+
+
+# G2 ----------------------------------------------------------------------
+
+grg <- dtg %>% 
+  filter(Genotype == "G2") %>% 
+  mutate(Salt = factor(Salt,c(0, 50, 75, 100, 150)))
+
+dgt <- ger_intime(Factor = "Salt",SeedN = "SDN", evalName = "D", data = grg)
+
+dgt <- dgt %>% mutate(Salt = factor(Salt, c(0, 50, 75, 100, 150)))
+
+G2 <- fplot(data = dgt, type = "line", x = "evaluation", y = "mean", z = "Salt", 
+            lmt = c(0,90), brk = 10, ylab = "Germination ('%')", 
+            lgd = c(0.12, 0.75), lgl = "NaCl (mM)") +
+  scale_x_discrete(expression("day"), breaks = 0:25*1) + 
+  scale_color_grey("NaCl (mM)", start = 0, end = 0) + scale_shape_discrete("NaCl (mM)")
+
+# G3 ----------------------------------------------------------------------
+
+grg <- dtg %>% 
+  filter(Genotype == "G3") %>% 
+  mutate(Salt = factor(Salt,c(0, 50, 75, 100, 150)))
+
+dgt <- ger_intime(Factor = "Salt",SeedN = "SDN", evalName = "D", data = grg)
+
+dgt <- dgt %>% mutate(Salt = factor(Salt, c(0, 50, 75, 100, 150)))
+
+G3 <- fplot(data = dgt, type = "line", x = "evaluation", y = "mean", z = "Salt", 
+            lmt = c(0,90), brk = 10, ylab = "Germination ('%')", 
+            lgd = c(0.12, 0.75), lgl = "NaCl (mM)") +
+  scale_x_discrete(expression("day"), breaks = 0:25*1) + 
+  scale_color_grey("NaCl (mM)", start = 0, end = 0) + scale_shape_discrete("NaCl (mM)")
+
+# G4 ----------------------------------------------------------------------
+
+grg <- dtg %>% 
+  filter(Genotype == "G4") %>% 
+  mutate(Salt = factor(Salt,c(0, 50, 75, 100, 150)))
+
+dgt <- ger_intime(Factor = "Salt",SeedN = "SDN", evalName = "D", data = grg)
+
+dgt <- dgt %>% mutate(Salt = factor(Salt, c(0, 50, 75, 100, 150)))
+
+G4 <- fplot(data = dgt, type = "line", x = "evaluation", y = "mean", z = "Salt", 
+            lmt = c(0,90), brk = 10, ylab = "Germination ('%')", 
+            lgd = c(0.12, 0.75), lgl = "NaCl (mM)") +
+  scale_x_discrete(expression("day"), breaks = 0:25*1) + 
+  scale_color_grey("NaCl (mM)", start = 0, end = 0) + scale_shape_discrete("NaCl (mM)")
+
+# G5 ----------------------------------------------------------------------
+
+grg <- dtg %>% 
+  filter(Genotype == "G5") %>% 
+  mutate(Salt = factor(Salt,c(0, 50, 75, 100, 150)))
+
+dgt <- ger_intime(Factor = "Salt",SeedN = "SDN", evalName = "D", data = grg)
+
+dgt <- dgt %>% mutate(Salt = factor(Salt, c(0, 50, 75, 100, 150)))
+
+G5 <- fplot(data = dgt, type = "line", x = "evaluation", y = "mean", z = "Salt", 
+            lmt = c(0,90), brk = 10, ylab = "Germination ('%')", 
+            lgd = c(0.12, 0.75), lgl = "NaCl (mM)") +
+  scale_x_discrete(expression("day"), breaks = 0:25*1) + 
+  scale_color_grey("NaCl (mM)", start = 0, end = 0) + scale_shape_discrete("NaCl (mM)")
+
+# salt in time ------------------------------------------------------------
+
+gnts <- ger_intime(Factor= "Salt", SeedN = "SDN", evalName = "D", method = "percentage", data = dtg)
+
+fsl <- gnts %>% 
+  mutate(Salt = factor(Salt,c(0, 50, 75, 100, 150))) 
+
+gnts <- gnts %>% mutate(Salt = factor(Salt, c(0, 50, 75, 100, 150)))
+
+slg <- fplot(data = gnts, type = "line", x = "evaluation", y = "mean", z = "Salt", 
+            lmt = c(0,60), brk = 10, ylab = "Germination ('%')", 
+            lgd = c(0.12, 0.75), lgl = "Sal (mM)", erb = F) +
+  scale_x_discrete(expression("day"), breaks = 0:25*1)+
+  scale_color_grey("NaCl (mM)", start = 0, end = 0) + scale_shape_discrete("NaCl (mM)")
+
+
+
+# germination in time multiplot -------------------------------------------
+
+grtplot <- plot_grid(G1, G2, G3, G4, G5, slg, ncol = 2, labels = c("A", "B", "C", "D", "E", "F"))
+
+cowplot::ggsave("img/grtplot.png", dpi= 300, width = 210*0.9 , height = 297*0.7, units = "mm")
+
+knitr::include_graphics("img/grtplot.png")
+
+```
+
 
 **Biometric and biomass components** Although the germination was evaluated up to the concentration of 150 mM NaCl, the biomass production was only computed up to 100 mM NaCl, and the biomass parameters were strongly affected by the increase in salinity. Regardless of the genotype, dry leaf biomass (PSF) accumulation was reduced to zero in 100 mM. For the control, the PSF did not show difference between the accessions 114, 171 and 183 with 5.19 g, 4.62 g and 5.11 g respectively. On the other hand, for genotypes 133 and 218 the PSF were 2.37 and 2.43, respectively. At the concentration of 50 mM, genotype 114 obtained the highest PSF at 1.39 g, followed by genotypes 171, 133, 183. Genotype 218 was the most sensitive to salinity, since it had PSF of 0.23 g. For the treatment of 75 mM, the PSF was reduced to values close to zero for all accessions (Table 2). For the dry weight of the root (PSR), genotype 114 presented the best development with 0, 50 and 75 mM NaCl in comparison to the other accessions, whereas for 100 mM the genotype 218 had greater accumulation of biomass in relation to the other accessions. Genotype 171 did not show differences in the accumulation of biomass for irrigation of 50, 75 and 100 mM with values of 0.31 g, 0.22 g and 0.26 g respectively. For stem dry weight (PSC), access 114 showed the best development at 0 mM and 50 mM, while accession 183 did not show significant differences between 50 mM and 75 mM NaCl treatments. At the concentration of 100 mM the genotypes 218, 133 and 171 showed an increase in the biomass accumulation of the stem with values of 0.98 g, 1.59 g and 2.40 g respectively. For the total dry weight (PST), genotype 114 was higher than the others, at least at concentrations of 0 and 50 mM, presenting values of 20.63 g and 4.31 g, respectively. Genotypes 171 and 183 did not show statistically significant differences in PST. Genotypes 133, 218 and 171 showed an increase in biomass at 100 mM, with values of 1.78 g, 1.85 g and 2.26 g, respectively, while the same genotypes at the 75 mM concentration showed no significant differences.
 
