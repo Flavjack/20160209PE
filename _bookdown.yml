@@ -4,7 +4,8 @@ rmd_files: [
   "index.Rmd", 
   "intro.Rmd",
   "MM.Rmd", 
-  "RD.Rmd",
+  "result.Rmd",
+  "discussion.Rmd",
   "conclusion.Rmd",
   "ref.Rmd"
   ]

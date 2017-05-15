@@ -1,4 +1,4 @@
-# Result and discusion
+# Results
 
 **Germination of aged seeds.** The germination of the seeds of *J. curcas* submitted to storage ranged from 9% to 15%, with values that are statistically similar to each other (Figure \@ref(fig:germination)A). Although twinning was not affected by storage, the mean germination time was significantly increased with time (Figure \@ref(fig:germination)B). The germination was completely asynchronous for all storage times, with a mean of 0.16 being recorded before storage and close to zero at other times (Figure \@ref(fig:germination)C). As it was observed, the germination in the time was significantly affected by the storage time, however, the germination uncertainty was not affected by the storage (Figure \@ref(fig:germination)D). It is verified that the seeds before storage and stored for 3 months began their germination on the 4th and the 3rd day after sowing respectively, while in other times the germination of the first seed was only computed from the 6th day the time for stabilization Of the germination was increased as the storage time was increased, being completed at 15 days without storage and at 23 days at 12 months of storage (Figure \@ref(fig:germination)E).
 
@@ -576,8 +576,7 @@ The parameters of unitary leaf area (AF) and total leaf area (AFT) were only pos
 
 For the leaf weight ratio (RPF), it is possible to observe a tendency in the reduction with the salinity increase, being genotype 218 presenting a ratio of 0.42, followed by genotype 183 with a ratio of 0.39. These two genotypes were the ones that best behaved in this allometric parameter. Genotype 171 showed no significant difference in RPF up to 50 mM, while genotype 114 increased its biomass accumulation to 50 mM. All genotypes showed drastic reduction from 75 mM NaCl, with a reduction of biomass accumulation in the leaf with increasing NaCl concentration in the irrigation water (Figure 8A). A distinct profile is verified in the stem dry weight ratio (RPC), which was increased with elevation of salinity, even though no significant effect was observed up to the 50 mM concentration. For the 75 mM concentration, genotype 183 was better than the others, although similar to genotypes 171 and 133 at 100 mM concentration (Figure 8B). The root weight ratio (RPR) showed a distinct behavior for each genotype, with genotypes 171, 133 and 218, increasing biomass of the roots up to 75 mM, and the latter showed a continuous increment up to 100 mM. On the other hand, the genotype 183 showed increment up to 50 mM and from there had its values reduced. Genotype 114 was apparently unaffected by the increase in NaCl concentration (Figure 8C). In the aerial weight characteristic (APR), it was not possible to observe a trend with increasing NaCl concentration; However, genotypes 183, 114, 171 and 133 in the treatment of 100 mM obtained the highest values of RPA in this respect of the other salt treatments, while genotype 218 showed reduced RPA when salinity increased (Figure 8D).
 
-
-```{r morphological, eval=F}
+```{r morphological}
 
 dtmv <- fb %>% 
   dplyr::select(Genotype, Salt, LDW = LDB, SDW = SDB, RDW = RDB, TLFA, LFA, HGT.24, STD.24) %>% 
@@ -589,14 +588,359 @@ dtmv <- fb %>%
                 RWR = RDW/TDW,
                 LAR = TLFA/TDW,
                 RSR = RDW/STDW) %>% 
-  dplyr::select(Genotype, Salt, LDW, SDW, RDW, STDW, TDW, TLFA, LFA, LWR, SWR, RWR, STWR, RSR, LAR, HGT.24, STD.24)
+  dplyr::select(Genotype, Salt, LDW, SDW, RDW, STDW, TDW, TLFA, LFA, LWR, SWR, RWR, STWR, RSR, LAR, HGT.24, STD.24) %>% as.data.frame()
 
-dtmv <- as.data.frame(dtmv)
-str(dtmv)
+
+# leaf dry weigth ---------------------------------------------------------
+
+av <- aov(LDW ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+
+sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>% 
+  mutate( s = c("Aa", "Bb", "Ac", "Ad", 
+                "Aa", "Ab", "Ac", "Ad", 
+                "Ba", "Bb", "Ac", "Bc", 
+                "Aa", "Bb", "Ac", "Ad", 
+                "Ba", "Bb", "Ac", "Ad" ))
+
+ldwt <- sm %>% 
+  select(Genotype, Salt, mean, ste, s) %>%  
+  mutate(mean = round(mean,2), ste = round(ste,2)) %>% 
+  unite(var, mean, ste, sep = " ± ") %>% 
+  unite(LDW, var, s, sep = " ")
+
+
+# root dry weigth ---------------------------------------------------------
+
+av <- aov(RDW ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <-dtsm(mc)
+
+sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>% 
+    mutate( s = c("Ba", "Bb", "Cc", "Cd", 
+                "Aa", "Ab", "Ac", "Cd", 
+                "Da", "Cc", "Bc", "Ab", 
+                "Ba", "Cb", "Bb", "Bb", 
+                "Ca", "Bb", "Bc", "Bc" ))
+
+rdwt <- sm %>% 
+  select(Genotype, Salt, mean, ste, s) %>%  
+  mutate(mean = round(mean,2), ste = round(ste,2)) %>% 
+  unite(var, mean, ste, sep = " ± ") %>% 
+  unite(RDW, var, s, sep = " ")
+
+# stem dry weigth ---------------------------------------------------------
+
+av <- aov(SDW ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+
+sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>% 
+    mutate( s = c("Ba", "Ab", "Ab", "Bc", 
+                "Aa", "Ab", "Ac", "Bc", 
+                "Ca", "Ab", "Ab", "Ab", 
+                "Ba", "Ac", "Ac", "Ac", 
+                "Ca", "Ab", "Ab", "Ab" ))
+
+sdwt <- sm %>% 
+  select(Genotype, Salt, mean, ste, s) %>%  
+  mutate(mean = round(mean,2), ste = round(ste,2)) %>% 
+  unite(var, mean, ste, sep = " ± ") %>% 
+  unite(SDW, var, s, sep = " ")
+
+# total dry weigth --------------------------------------------------------
+
+av <- aov(TDW ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>% 
+    mutate( s = c("Ba", "Bb", "Ab", "Bc", 
+                "Aa", "Ab", "Ac", "Bc", 
+                "Ca", "Bb", "Ab", "Ab", 
+                "Ba", "Bc", "Ac", "Ab", 
+                "Ca", "Bb", "Ab", "Ab" ))
+
+tdwt <- sm %>% 
+  select(Genotype, Salt, mean, ste, s) %>%  
+  mutate(mean = round(mean,2), ste = round(ste,2)) %>% 
+  unite(var, mean, ste, sep = " ± ") %>% 
+  unite(TDW, var, s, sep = " ")
+
+# Biometric component
+
+# height (hgt)  -----------------------------------------------------------
+
+av <- aov(HGT.24 ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+
+sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
+   mutate( s = c("Aa", "Ab", "Ab", "Bc", 
+                "Aa", "Ab", "Ac", "Bd", 
+                "Aa", "Cb", "Bc", "Ac", 
+                "Aa", "Cb", "Ab", "Ab", 
+                "Aa", "Bb", "Ac", "Ad" ))
+
+hgtt <- sm %>% 
+  select(Genotype, Salt, mean, ste, s) %>%  
+  mutate(mean = round(mean,2), ste = round(ste,2)) %>% 
+  unite(var, mean, ste, sep = " ± ") %>% 
+  unite(HGT, var, s, sep = " ")
+
+# stem diameter -----------------------------------------------------------
+
+av <- aov(STD.24 ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
+    mutate( s = c("Aa", "Ab", "Ab", "Bc", 
+                "Aa", "Ab", "Ab", "Ac", 
+                "Aa", "Ab", "Ab", "Ab", 
+                "Aa", "Ab", "Ab", "Ab", 
+                "Aa", "Ab", "Ab", "Ab" ))
+
+stdt <- sm %>% 
+  select(Genotype, Salt, mean, ste, s) %>%  
+  mutate(mean = round(mean,2), ste = round(ste,2)) %>% 
+  unite(var, mean, ste, sep = " ± ") %>% 
+  unite(STD, var, s, sep = " ")
+
+
+
+# Leaf Area per plant (lfa) -----------------------------------------------
+
+
+av <- aov(LFA ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
+  mutate( s = c("Ba", "Bb", "Ab", "Ac", 
+                "Ba", "Bb", "Bc", "Ad", 
+                "Aa", "Bb", "Bb", "Ac", 
+                "Ba", "Bb", "Bb", "Ac", 
+                "Ba", "Ab", "Bc", "Ad" ))
+
+lfat <- sm %>% 
+  select(Genotype, Salt, mean, ste, s) %>%  
+  mutate(mean = round(mean,2), ste = round(ste,2)) %>% 
+  unite(var, mean, ste, sep = " ± ") %>% 
+  unite(LFA, var, s, sep = " ")
+
+
+# total leaf area ---------------------------------------------------------
+
+av <- aov(TLFA ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
+  mutate( s = c("Ba", "Ab", "Ab", "Ac", 
+                "Aa", "Ab", "Ab", "Ac", 
+                "Ca", "Ab", "Ab", "Ac", 
+                "Ba", "Ab", "Ab", "Ac", 
+                "Ca", "Ab", "Ab", "Ac" ))
+
+tlfat <- sm %>% 
+  select(Genotype, Salt, mean, ste, s) %>%  
+  mutate(mean = round(mean,2), ste = round(ste,2)) %>% 
+  unite(var, mean, ste, sep = " ± ") %>% 
+  unite(TLFA, var, s, sep = " ")
+
+# Table biomass and biometric paramethers
+
+tbb <- full_join(ldwt, rdwt, by = c("Genotype", "Salt")) %>% 
+  full_join(sdwt,  by = c("Genotype", "Salt")) %>% 
+  full_join(tdwt,  by = c("Genotype", "Salt")) %>% 
+  full_join(lfat,  by = c("Genotype", "Salt")) %>% 
+  full_join(tlfat,  by = c("Genotype", "Salt")) %>% 
+  full_join(stdt,  by = c("Genotype", "Salt")) %>% 
+  full_join(hgtt,  by = c("Genotype", "Salt")) 
+
+
+knitr::kable(x = tbb,  
+             booktabs = TRUE, 
+             # longtable = TRUE, 
+             caption = "Parameters of biometric and biomass components evaluated in five accessions of *Jatropha curcas* L. under salinity stress at 25 days after sowing. Where: PSF, leaf dry weight. PSR, root dry weight. PSC, dry stem weight. PST, total dry weight. AF, leaf area. AFT, total leaf area. CMP, plant length. DMC, stem diameter. The values are represented by the mean (± SE) for four replicates of 25 seeds in each experimental unit. The differences between the means between the accessions are represented by the different ones by capital letters and between the different levels of salt by lowercase letters (SNK, p ≤ 0.05)")
 
 ```
 
+```{r index, fig.align='center', fig.cap= "The dry weight ratio of leaf (A), root dry weight ratio (B), root weight ratio (C) and shoot weight ratio (D) evaluated in five genotypes of *Jatropha curcas* L. under different concentrations NaCl (0, 50, 75, 100 and 150 mM). The vertical bars represent the mean (± SE). The mean differences between the accessions are represented by different capital letters and between salt levels by different lowercase letters (SNK, p ≤ 0.05). N = 4."}
+
+# Index caculations -------------------------------------------------------
+
+# lwr ---------------------------------------------------------------------
+
+av <- aov(LWR ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+sm <- sm %>% mutate(s =
+
+c("Aa", "Ad", "Ab", "Ac",
+"Bb", "Ad", "Aa", "Ac", 
+"Aa", "Ac", "Bb", "Ac", 
+"Aa", "Ac", "Aa", "Ab", 
+"Aa", "Ad", "Bb", "Ac"))
+ 
+ldr <-  GerminaR::fplot(sm, type = "bar",
+             x = "Genotype", y =  "mean",  z = "Salt",
+             ylab = "razon peso da folha" , xlab = "",
+             lgl = "NaCl (mM)" , erb = T,  
+             lmt = c(0, .601), 
+             sig = "s", lgd = "top") + 
+  scale_fill_grey("NaCl (mM)", start = 1, end = 0)+
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))
+
+# swr ---------------------------------------------------------------------
+
+av <- aov(SWR ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+sm <- sm %>% 
+  mutate( s = c("Ac", "Aa", "Ac", "Ab", 
+                "Ab", "Ba", "Ac", "Cb", 
+                "Ab", "Ca", "Aa", "Ba", 
+                "Ac", "Aa", "Ac", "Bb", 
+                "Ac", "Aa", "Ac", "Bb" ))
+
+sdr <-  GerminaR::fplot(sm, type = "bar", 
+             x = "Genotype", y =  "mean",  z = "Salt",
+             ylab = "razon peso do caule" , xlab = "" ,
+             lgl = "NaCl (mM)" , erb = T,
+             lmt = c(0,1),
+             sig = "s", lgd = "top") + 
+  scale_fill_grey(expression("NaCl (mM)"), start = 1, end = 0)+
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))
+
+# stwr --------------------------------------------------------------------
+
+av <- aov(STWR ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+sm <- sm %>% 
+  mutate( s = c("Ab", "Aa", "Ac", "Aa", 
+                "Ba", "Ba", "Aa", "Cb", 
+                "Aa", "Cc", "Ab", "Bb", 
+                "Ab", "Aa", "Ab", "Bb", 
+                "Bb", "Aa", "Bc", "Bc" ))
+
+stdr <-  GerminaR::fplot(sm, type = "bar",
+             x = "Genotype", y =  "mean",  z = "Salt",
+             ylab = "razon peso a?reo" , xlab = "gen?tipo" ,
+             lgl = "NaCl (mM)" ,
+             lmt = c(0,1), 
+             sig = "s", erb = T, lgd = "none") + 
+  scale_fill_grey(expression("NaCl (mM)"), start = 1, end = 0)+
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))
+
+# rwr ---------------------------------------------------------------------
+
+av <- aov(RWR ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+sm <- sm %>% 
+  mutate( s = c("Cb", "Cc", "Ba", "Cc", 
+                "Ab", "Bb", "Ab", "Aa", 
+                "Cc", "Aa", "Ab", "Ba", 
+                "Cb", "Cc", "Aa", "Ba", 
+                "Bb", "Cc", "Aa", "Ba" ))
+
+rdr <-  GerminaR::fplot(sm, type = "bar",  
+             x = "Genotype", y =  "mean",  z = "Salt",
+             ylab = "razon peso da raiz" , xlab = "gen?tipo" ,
+             lgl = "Sal (mM)" , 
+             lmt = c(0,0.601),
+             sig = "s", erb = T, lgd = "none") + 
+  scale_fill_grey(expression("NaCl (mM)"), start = 1, end = 0)+
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))
+
+
+# multiplot index ---------------------------------------------------------
+
+rtplot <- plot_grid(ldr, sdr, rdr, stdr, ncol = 2, labels = c("A", "B", "C", "D"))
+
+rtplot <- ggdraw() +
+  draw_plot(ldr, width = 0.5, height = 0.5, x = 0.0, y = 0.5) +
+  draw_plot(sdr, width = 0.5, height = 0.5, x = 0.5, y = 0.5) +
+  draw_plot(rdr, width = 0.5, height = 0.5, x = 0.0, y = 0.0) +
+  draw_plot(stdr, width = 0.5, height = 0.5, x = 0.5, y = 0.0) +
+  draw_plot_label(label = c("A", "B", "C", "D"), 
+                  x = c(0.0, 0.5, 0.0, 0.5), 
+                  y = c(1, 1, 0.5, 0.5))
+
+
+cowplot::ggsave("img/rtplot.png", dpi= 300, width = 210*0.9 , height = 297*0.5, units = "mm")
+
+knitr::include_graphics("img/rtplot.png")
+
+```
 
 **Multivariate analysis of the salinity experiment** The germination parameters were negatively affected by the increase in the salt concentration; There was a negative correlation between germination percentage (r = -0.55, p ≤ 0.05) and germination synchrony (r = -0.69, p value ≤ 0.001). On the other hand, the mean germination time was positively significant when correlated with the increase of salts
 (R = 0.66, p ≤ 0.001). However, there was no significant correlation between germination uncertainty and salt increase (r = -0.23, p = 0.321). The biomass parameters were significantly affected with increasing salts. The correlations between this parameter in relation to the leaf dry weight (r = -0.86, p ≤ 0.001), the leaf area (r = -0.89, p ≤ 0.001), and plant height ( R = -0.89, p ≤ 0.001) and stem diameter (r = -0.91, p ≤ 0.001). Other allometric parameters were also influenced by saline addition; (R = -0.90, p ≤ 0.001) and leaf area ratio (r = -0.94, p ≤ 0.001) were used to estimate the negative relationship between salinity and leaf weight ratio. Other allometric characteristics, on the other hand, were strongly increased with salinity; The increase in the ratio of stem weight
 (R = 0.74, p ≤0.001). The analysis of the main components shows that approximately 74% of the variation can be explained by the parameters studied in this work. In the first component the variables PSF, AFT, CMP and PST were the ones that presented the greatest contribution in the variance and are negatively correlated with the increase of NaCl, while the variables with positive correlation were the TMG and RPC. The genotypes that showed the best response were 114, 171 and 183 and the susceptible genotypes 133 and 218 (Figure 9).
+
+```{r pca, fig.align='center', fig.cap="Principal components analysis (PCA) of the variables evaluated in five genotypes of *Jatropha curcas* L. under different concentrations of NaCl (0, 50, 75, 100 and 150 mM). PGR, Percentage of germination; TMG, Average germination time; ICG, Uncertainty of germination; SNG, Synchronism of germination; PSF, leaf dry weight; PSR, root dry weight; PSC, dry stem weight; PST, total dry weight; AF, total leaf area; AFT, total leaf area; RPF, leaf dry weight ratio; RPC, dry stem weight ratio; RPR, root weight ratio; RPA, shoot dry weight ratio; CMP, plant length; DMC, stem diameter."}
+
+# Data merge
+
+dt1 <- smg %>% 
+  select(Genotype, Salt, GRP, MGT, UNC, SYN) %>% 
+  mutate(Salt = as.factor(Salt))
+
+dt2 <- dtmv %>% 
+  rename(HGT = HGT.24, STD = STD.24)
+
+  
+dtmvr <- dplyr::full_join(dt1,dt2, by = c("Genotype", "Salt"))
+
+dtmvr <- aggregate(. ~ Genotype + Salt, data = dtmvr, mean)
+
+dtcr <- dtmvr %>% rename(SAL = Salt, PGR = GRP, TMG = MGT, ICG = UNC, SNG = SYN, 
+                         CMP = HGT, DMC = STD, 
+                         AF = LFA, AFT = TLFA,
+                         PSF = LDW, PSR = RDW, PSC = SDW, PSA = STDW, PST = TDW,
+                         RPF = LWR, RPC = SWR, RPR = RWR, RPA = STWR, RCR = RSR, RAF = LAR)
+dtcr$Genotype <- NULL
+dtcr$SAL <- as.numeric(dtcr$SAL)
+
+# Principal Componen analisys
+
+dtm <- dtmvr %>% 
+  mutate(Salt = as.numeric(Salt), Genotype = factor(Genotype, levels = c("G1", "G2", "G3", "G4", "G5"), label = c("183", "114", "218", "171", "133"))) %>% 
+  rename(SAL = Salt, PGR = GRP, TMG = MGT, ICG = UNC, SNG = SYN, 
+         CMP = HGT, DMC = STD, 
+         AF = LFA, AFT = TLFA,
+         PSF = LDW, PSR = RDW, PSC = SDW, PSA = STDW, PST = TDW,
+         RPF = LWR, RPC = SWR, RPR = RWR, RPA = STWR, RCR = RSR, RAF = LAR) %>% 
+  dplyr::select(-PSA, -RCR, -RAF)
+
+
+bp <- fieldbook::plot_PCA(data = dtm, type = "biplot", quali.sup = "Genotype") + 
+  scale_x_continuous( limits = c(-5.5,5.5), breaks= -10:10*1) + 
+  scale_y_continuous( limits = c(-3.7,3.7), breaks= -10:10*1)
+
+
+# summary(pca, nbelements = Inf, file="PCA.txt")
+
+ppi <- 300
+png("img/pca.png", width=12*ppi, height=10*ppi, res=ppi)
+
+bp
+
+graphics.off()
+
+knitr::include_graphics("img/pca.png")
+
+```
+
