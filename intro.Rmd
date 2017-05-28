@@ -10,7 +10,7 @@ Another factor that negatively influences agriculture is salinity, mainly in irr
 
 Some studies have studied the ecophysiological aspects of the tolerance of _J. curcas_ to NaCl [@diaz2012tolerance; @elhag2014effect; @pompelli2010photosynthesis; @rajaona2012effect]; However, these studies focused on only one batch of seeds. Although interest in the growth response of _J. curcas_ is increasing, there is no known research that has examined the effect of NaCl on different genotypes during germination and early development of seedlings. In this work five distinct genotypes of _J. curcas_ exposed to different NaCl treatments were studied to determine tolerance and to understand the morphological and physiological responses of this species under conditions of salinity in their germination and initial development.
 
-Thus, the main hypotheses of this work were (i) to verify if the use of a desiccant agent could help to maintain the viability and germinability of the seeds of _J. curcas_ when stored for long periods of time, and (ii) to study the mechanims of the tolerance of _J. curcas_ to salinity between the accesses of marketed in Brazil.
+Thus, the main hypotheses of this work were (i) to verify if the use of a desiccant agent could help to maintain the viability and germinability of the seeds of _J. curcas_ when stored for long periods of time, and (ii) to study the mechanims of the tolerance of _J. curcas_ to salinity between the genotypes of marketed in Brazil.
 
 
 
