@@ -1,13 +1,14 @@
 # Results
 
-**Germination of aged seeds.** The germination of the seeds of *J. curcas* submitted to storage ranged from 9% to 15%, with values that are statistically similar to each other (Figure \@ref(fig:germination)A). Although germination was not affected by storage, the mean germination time was significantly increased with storage time (Figure \@ref(fig:germination)B). The germination was completely asynchronous for all storage times, with a mean of 0.16 being recorded before storage and close to zero at other times (Figure \@ref(fig:germination)C). As it was observed, the germination in the time was significantly affected by the storage time, however, the germination uncertainty was not affected by the storage (Figure \@ref(fig:germination)D). It is verified that the seeds before storage and stored for 3 months began their germination on the 3rd and the  4th day after sowing respectively, while in other times the germination of the first seed was only computed from the 6th day the time for stabilization of the germination was increased as the storage time was increased, being completed at 15 days without storage and at 23 days at 12 months of storage (Figure \@ref(fig:germination)E).
+**Germination of aged seeds.** The germination of the *J. curcas* seeds submitted to storage ranged from 9% to 15%, with values that are statistically similar to each other (Figure \@ref(fig:germination)A). Although germination was not affected by storage, the mean germination time was significantly increased with storage time (Figure \@ref(fig:germination)B). The germination was completely asynchronous for all storage times, with a mean of 0.16 being recorded before storage and close to zero at other times (Figure \@ref(fig:germination)C). As it was observed, the germination in the time was significantly affected by the storage time (Figure 1E). however, the germination uncertainty was not affected by the storage (Figure \@ref(fig:germination)D). It is verified that the seeds before storage and stored for 3 months began their germination on the 3^rd^ and the 4^th^ day after sowing respectively, while in other times the germination of the first seed was only computed from the 6^th^ day the time for stabilization of the germination was increased as the storage time was increased, being completed at 15 days without storage and at 23 days at 12 months of storage (Figure \@ref(fig:germination)E).
+
 
 ```{r 20130427PE}
 url <- "https://docs.google.com/spreadsheets/d/1ecUgc1jjbxkd4WQsNEiyjl5Emx0O8KV5Cw4udX3pJI8/edit#gid=749789387"
-fb <- gsheet2tbl(url)
+fb <- gsheet::gsheet2tbl(url)
 ```
 
-```{r germination, fig.align='center', fig.cap= "Germinability (A), mean germination time (B), synchrony index (C), germination uncertainty (D) and temporal germination (E) evaluated in *Jatropha curcas* seeds in genotype 171 stored at 0, 3, 6, 9 and 12 months. The bars represent the mean (± SE). The mean differences between the storage months are represented by the lower case letters (SNK, p ≤ 0.05). N = 4"}
+```{r germination, fig.align='center', fig.cap= "Germinability (A), mean germination time (B), synchrony index (C), germination uncertainty (D) and temporal germination (E) evaluated in *Jatropha curcas* seeds in genotype 171 stored at 0, 3, 6, 9 and 12 months. The bars represent the mean (± SE). The mean differences between the storage months are represented by the lower case letters (SNK, p = 0.05). n = 4"}
 
 # data -------------------------------------------------------------
 
@@ -100,12 +101,11 @@ cowplot::ggsave("img/gerv.png", dpi= 300, width = 210*0.9 , height = 297*0.7, un
 knitr::include_graphics("img/gerv.png")
 ```
 
-**Biochemical responses of seeds submitted to aging.** It was verified that the oil content in the seeds remained practically stable until the sixth month of storage at the rate of 35%, with significant reductions from that date until the 12th month, when the oil content was approximately 29% (Figure \@ref(fig:bioquimico)A ), and the oil content in the seeds showed a reduction in time (r = -0.91, p ≤ 0.05, Figure \@ref(fig:corr)). On the other hand, the starch was rapidly metabolized with approximate reduction of 33% with time 12 months of storage (Figure \@ref(fig:bioquimico)B). Total soluble protein and total soluble amino acid content was increased by 160% and approximately 67% during storage (Figure \@ref(fig:bioquimico)C-D). A high correlation (r = 0.92, p ≤ 0.05) is shown between total soluble proteins and amino acid syntheses.
+**Biochemical responses of seeds submitted to aging.** It was verified that the oil content in the seeds remained practically stable until the sixth month of storage at the rate of 35%, with significant reductions from 12th month of storage, when the oil content was approximately 29% (Figure \@ref(fig:bioquimico)A). We verified a strong and negative correlation between oil content in the seeds and storage time (r = -0.91, p ≤ 0.05). On the other hand, the starch was rapidly metabolized with approximate reduction of 33% with time 12 months of storage (Figure \@ref(fig:bioquimico)B). Total soluble protein and total soluble amino acid content was increased by 160% and approximately 67% during storage (Figure \@ref(fig:bioquimico)C-D). A strong and positive correlation (r = 0.92, p ≤ 0.05) is shown between total soluble proteins and amino acid syntheses.
 
-There was a gradual reduction in the total soluble carbohydrate content at the third month of storage compared to the control, without showing differences until the 12th month of storage (Figure \@ref(fig:bioquimico2)A). Sucrose levels had a reduction of approximately 49% between 3 and 12 months of storage (Figure \@ref(fig:bioquimico2)B), but glucose levels remained stable until the 3rd month of storage. From the 6th month the glucose was rapidly elevated, reaching 71% in the 12th month in relation to the non-stored seeds (Figure \@ref(fig:bioquimico2)C). On the other hand, fructose levels did not show a trend during the months evaluated (Figure \@ref(fig:bioquimico2)D), while sucrose levels decreased (r = -0.57, p ≤ 0.05) throughout the storage period. Glucose (r = 0.67, p ≤ 0.05) had an opposite behavior, ie increase with storage (Figure \@ref(fig:corr))
+There was a gradual reduction in the total soluble carbohydrate content at the 3^rd^ month of storage compared to the control, without showing differences until the 12^th^ month of storage (Figure \@ref(fig:bioquimico2)A). Sucrose levels had a reduction of approximately 49% between 3 and 12 months of storage (Figure \@ref(fig:bioquimico)B), while glucose levels remained stable until the 3rd month of storage when compared to non-stored seeds. From the 6^th^ month, the glucose was rapidly elevated, reaching 71% in the 12^th^ month in relation to the non-stored seeds  (Figure \@ref(fig:bioquimico2)C). On the other hand, fructose levels did not show a trend during the months evaluated  (Figure \@ref(fig:bioquimico2)D). We showed that while sucrose levels decreased (r = -0.57, p ≤ 0.05) throughout the storage period, glucose (r = 0.67, p ≤ 0.05) had an opposite behavior, with increase with storage.
 
-
-```{r bioquimico, fig.align='center', fig.cap= "Oil content (A), starch (B), total soluble protein (C), total soluble amino acids (D) evaluated in *Jatropha curcas* seeds in genotype 171 stored for 0, 3, 6, 9 and 12 months. The bars represent the mean (± SE). The mean differences between the storage months are represented by the lower case letters (SNK, p ≤ 0.05). N = 4."}
+```{r bioquimico, fig.align='center', fig.cap= "Oil content (A), starch (B), total soluble protein (C), total soluble amino acids (D) evaluated in *Jatropha curcas* seeds in genotype 171 stored for 0, 3, 6, 9 and 12 months. The bars represent the mean (± SE). The mean differences between the storage months are represented by the lower case letters (SNK, p = 0.05). n = 4"}
 
 # datos -----------------------------------------------------
 
@@ -125,7 +125,11 @@ oleo <- fplot(data = mc, type = "bar", color = F,
              #brk = 2,
              erb = T, 
              sig = "sg",
-             lgd = "none")
+             lgd = "none") +
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 # Aminoacidos
 
@@ -140,7 +144,11 @@ amd <- fplot(data = mc, type = "bar", color = F,
              brk = 30,
              erb = T, 
              sig = "sg",
-             lgd = "none")
+             lgd = "none") +
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 # Proteina solubles totales
 
@@ -155,7 +163,11 @@ pst <- fplot(data = mc, type = "bar", color = F,
              brk = 10,
              erb = T, 
              sig = "sg",
-             lgd = "none")
+             lgd = "none") +
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 # Aminoacido soluble total
 
@@ -173,13 +185,13 @@ ast <- fplot(data = mc, type = "bar", color = F,
              lgd = "none")
 
 
-bioquim <- cowplot::plot_grid(ncol = 2, oleo, amd, pst, ast, labels = c("A", "B", "C", "D"))
-cowplot::ggsave("img/bioquim.png", dpi= 300, width = 210*0.9 , height = 297*0.7, units = "mm")
+bioquim <- cowplot::plot_grid(ncol = 1, oleo, amd, pst, ast, labels = c("A", "B", "C", "D"))
+cowplot::ggsave("img/bioquim.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
 
 knitr::include_graphics("img/bioquim.png")
 ```
 
-```{r bioquimico2, fig.align='center', fig.cap= "Total soluble carbohydrates (A), sucrose (B), glucose (C) and fructose (D) evaluated in *Jatropha curcas* seeds in genotype 171 were stored for 0, 3, 6, 9 and 12 months. The bars represent the mean (± SE). The mean differences between the storage months are represented by the lower case letters (SNK, p ≤ 0.05). N = 4."}
+```{r bioquimico2, fig.align='center', fig.cap= "Total soluble carbohydrates (A), sucrose (B), glucose (C) and fructose (D) evaluated in *Jatropha curcas* seeds in genotype 171 were stored for 0, 3, 6, 9 and 12 months. The bars represent the mean (± SE). The mean differences between the storage months are represented by the lower case letters (SNK, p = 0.05). n = 4"}
 
 # Carbohidratos solubles totales
 
@@ -194,7 +206,11 @@ cst <- fplot(data = mc, type = "bar", color = F,
              brk = 50,
              erb = T, 
              sig = "sg",
-             lgd = "none")
+             lgd = "none") +
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 av <- aov(scr ~ mes, bqm)
 #summary(av)
@@ -207,7 +223,11 @@ scr <- fplot(data = mc, type = "bar", color = F,
              brk = 1,
              erb = T, 
              sig = "sg",
-             lgd = "none")
+             lgd = "none") +
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 av <- aov(glc ~ mes, bqm)
 #summary(av)
@@ -220,7 +240,11 @@ glc <- fplot(data = mc, type = "bar", color = F,
              brk = 1,
              erb = T, 
              sig = "sg",
-             lgd = "none")
+             lgd = "none") +
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 av <- aov(fts ~ mes, bqm)
 #summary(av)
@@ -235,15 +259,15 @@ fts <- fplot(data = mc, type = "bar", color = F,
              sig = "sg",
              lgd = "none")
 
-bioquim2 <- cowplot::plot_grid(ncol = 2, cst, scr, glc, fts, labels = c("A", "B", "C", "D"))
-cowplot::ggsave("img/bioquim2.png", dpi= 300, width = 210*0.9 , height = 297*0.7, units = "mm")
+bioquim2 <- cowplot::plot_grid(ncol = 1, cst, scr, glc, fts, labels = c("A", "B", "C", "D"))
+cowplot::ggsave("img/bioquim2.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
 
 knitr::include_graphics("img/bioquim2.png")
 ```
 
-**Physiological responses of seeds submitted to aging.** With the storage time in desiccant agent, it was verified that the water content in the seeds was greatly reduced. Seeds prior to storage had water content of 8%, but reduced to 5.5% at 12 months of storage (Figure \@ref(fig:fisio)A). The water potential showed a reduction parallel to the water content, presenting a strong correlation (r = 0.83, p ≤ 0.05) between these two characteristics (Figure \@ref(fig:corr)). It is verified that the water potential of the seeds was decreased from -35 Mpa, without storage, to -124 MPa at 12 months of storage (Figure \@ref(fig:fisio)B). With the reduction of the relative water content and the water potential there was a drastic reduction in the respiratory rate of the seeds (r = 0.88, p ≤ 0.05), from 115 mmol CO~2~ h^-1^ g^-1^ MF to 10 mmol CO~2~ h^-1^ g^-1^ MF at time zero (Figure \@ref(fig:corr)), with a 91% reduction in respiratory rate in the seeds over the 12 months of storage (Figure \@ref(fig:fisio)C).
+**Physiological responses of seeds submitted to aging.** With the storage time in desiccant agent, it was verified that the water content in the seeds was greatly reduced (Figure \@ref(fig:fisio)). Non-stored seeds had 8% of water content, while seeds stored by 12 months had 5.5% (Figure \@ref(fig:fisio)A). Concomitantly the water content, the seeds water potential had a strong reduction with the storage time, presenting a strong correlation (r = 0.83, p ≤ 0.05) between these two characteristics. We verified that the water potential of non-stred seeds were -35 MPa, but water potential were reduced to -124 MPa at 12 months of storage (Figure \@ref(fig:fisio)B). With the reduction of the relative water content and the water potential there was a strong reduction in the respiratory rate of the seeds (r = 0.88, p ≤ 0.05), ranging 115 mmol CO~2~ h^-1^ g^-1^ MF, in non-stored seeds to 10 mmol CO~2~ h^-1^ g^-1^ MF after 12 months of storage (Figure \@ref(fig:fisio)), a reduction of 91% over the seeds storage (Figure \@ref(fig:fisio)C).
 
-```{r fisio, fig.align='center', fig.cap= "Relative water content (A), water potential (B), seed respiratory rate (C), evaluated in *Jatropha curcas* seeds in genotype 171 stored at 0, 3, 6, 9 and 12 months. The bars represent the mean (± SE). The mean differences between the storage months are represented by the lower case letters (SNK, p ≤ 0.05). N = 4."}
+```{r fisio, fig.align='center', fig.cap= "Relative water content (A), water potential (B), seed respiratory rate (C), evaluated in *Jatropha curcas* seeds in genotype 171 stored at 0, 3, 6, 9 and 12 months. The bars represent the mean (± SE). The mean differences between the storage months are represented by the lower case letters (SNK, p = 0.05). n = 4. "}
 
 # Contenido relativo de agua
 
@@ -258,7 +282,11 @@ tra <- fplot(data = mc, type = "bar", color = F,
              brk = 1,
              erb = T, 
              sig = "sg",
-             lgd = "none")
+             lgd = "none") +
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 # water potencial
 
@@ -274,7 +302,11 @@ yw <- fplot(data = mc, type = "bar", color = F,
              erb = T,
             lgd = "none") + 
   geom_text(aes(label = sg , y = mean - ste), colour = "black", 
-            size = 2, vjust = 1, angle = 0, position = position_dodge(0.9))
+            size = 2, vjust = 1, angle = 0, position = position_dodge(0.9)) +
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 # transpiration
 
@@ -298,7 +330,7 @@ cowplot::ggsave("img/fisio.png", dpi= 300, width = 210*0.425 , height = 297*0.9,
 knitr::include_graphics("img/fisio.png")
 ```
 
-```{r corr, fig.align='center', fig.cap= "Pearson correlation (p ≤ 0.05) of the variables evaluated in *Jatropha curcas* seeds in genotype 171 stored for 0, 3, 6, 9 and 12 months. OIL, oil content; STR, starch; TSP, total soluble protein; TSA, total soluble amino acids; TSC, total soluble carbohydrates; SCR, sucrose; GLC, glucose; FTS, fructose; RWC, relative water content in seeds; WTP, water potential; SRR, seed respiration rate."}
+```{r corr, eval=FALSE, fig.align='center', fig.cap= "Pearson correlation (p = 0.05) of the variables evaluated in *Jatropha curcas* seeds in genotype 171 stored for 0, 3, 6, 9 and 12 months. OIL, oil content; STR, starch; TSP, total soluble protein; TSA, total soluble amino acids; TSC, total soluble carbohydrates; SCR, sucrose; GLC, glucose; FTS, fructose; RWC, relative water content in seeds; WTP, water potential; SRR, seed respiration rate. "}
 
 # Correlation -------------------------------------------------------------
 
@@ -328,16 +360,16 @@ graphics.off()
 knitr::include_graphics("img/correlation.png")
 ```
 
-**Seed germination treated with NaCl.** Germination was almost zero at the concentration of 150 mM NaCl for all genotypes. For the control concentration (0 mM), seeds of genotype 183 and 114 had 71% and 86% of germination, respectively, with gradual decrease with the increase in NaCl concentration, from 0% to 150 mM and 4% to 100 mM. Genotypes 218 and 133 did not differ by up to 100 mM NaCl, although germination was reduced to approximately 5% at the concentration of 150 mM. Seeds of the genotype 171 showed 65% germination in the control, reducing to 32% and 9% in 50 mM and 150 mM NaCl respectively (Figure \@ref(fig:jcger)A). The mean germination time for the control was 5 to 7 days in general for all genotypes, while for the 150 mM NaCl concentration the interval was longer, ranging from 7.2 days to 12.3 days. No significant differences were observed in mean germination time from 50 mM to 75 mM, with a general average of 7.5 days for all genotypes (Figure \@ref(fig:jcger)B). There was no difference in the germination synchrony between the control genotypes up to 75 mM NaCl; However, the synchronization at 100 mM was null at genotype 183, 114 and 218, as well as for genotype 133 in the concentration at 150 mM NaCl. It was observed that the synchrony values were always lower than 0.25 for all concentrations (Figure \@ref(fig:jcger)C), denoting a very asynchronous germinative profile. The maximum value for the uncertainty in germination in this experiment was 4.64 bits. Genotypes 183 and 114 showed a tendency to reduce uncertainty with the increase in NaCl concentration. The germination uncertainty was stable up to 75 mM NaCl, but with a significant increase in the concentration of 100 mM, where the uncertainty was 0.5 and 0.3 for the genotype 183 and 114, respectively. Genotypes 218, 171 and 133 showed a trend in increasing uncertainty from 0 mM to 100 mM without showing significant differences. At 150mm, the uncertainty was 0.3, 0.7 and 0.5 for genotypes 218, 171 and 133 respectively (Figure \@ref(fig:jcger)D).
 
-The cumulative germination presented differences for each of the genotypes. The germination in the treatments without stress began between the 3rd and 4th day after sowing; Whereas for the treatments with NaCl addition the maximum values of germination were observed between the 9th and 12th day (Figure \@ref(fig:gerit)A-E). Regardless of the evaluated genotype, germination was observed on the 3rd day in the control, while in the 50 mM and 75 mM treatments the germination was generally initiated on the 4th day, values that were elevated with 100 mM (5th day) and 150 mM NaCl (7th day). However, regardless of treatments and salinity levels, germination became stable since day 13 (Figure \@ref(fig:gerit)F).
+**Seed germination treated with NaCl.** As mencioned in material and methods, these experiments were conducted in greenhouse. Throughout the experiments, the temperature inside greenhouse were 30.6 ± 1.1°C and relative humidity of 70.4 ± 5.8%. These data denote a very controlled situation, because temperature and relative humidity were collected every fifteen minutes during all days, 24 hours per day. In this experiment, we verified that the germination was almost zero at 150 mM NaCl for all genotypes. In 0 mM NaCl, seeds of genotype 183 and 114 had 71% and 86% of germination, respectively, with gradual decrease with the increase in NaCl concentration, from 4% to 100 mM and 0% to 150 mM. In another way, genotypes 218 and 133 did not differ by up to 100 mM NaCl, although germination was reduced to approximately 5% at the concentration of 150 mM. Seeds of the genotype 171 showed 65% germination in the control, reducing to 32% and 9% in 50 mM and 150 mM NaCl respectively (Figure \@ref(fig:jcger)A). The mean germination time for 0 mM NaCl was 5 to 7 days in general for all genotypes, while for the 150 mM NaCl concentration the interval was longer, ranging from 7.2 days to 12.3 days. No significant differences were observed in mean germination time from 50 mM to 75 mM, with a general average of 7.5 days for all genotypes (Figure \@ref(fig:jcger)B). There was no difference in the germination synchrony in all genotypes up to 75 mM NaCl. However, the synchronization at 100 mM was null at genotype 183, 114 and 218, as well as for genotype 133 in the concentration at 150 mM NaCl. It was observed that the synchrony were always lower than 0.25 for all concentrations for all genotypes (Figure \@ref(fig:jcger)C), denoting a very asynchronous profile. The maximum value for the uncertainty in germination in this experiment was 4.64 bits. Genotypes 183 and 114 showed a tendency to reduce uncertainty with the increase in NaCl concentration. The germination uncertainty was stable up to 75 mM NaCl, but with a significant increase in the concentration of 100 mM, where the uncertainty was 0.5 and 0.3 for the genotype 183 and 114, respectively. Genotypes 218, 171 and 133 showed a trend in increasing uncertainty from 0 mM to 100 mM without showing significant differences. At 150 mM, the uncertainty was 0.3, 0.7 and 0.5 for genotypes 218, 171 and 133 respectively (Figure \@ref(fig:jcger)D). The  germination in time showed differences for each of the genotypes. The germination in the treatments without salt began between the 3^rd^ and 4^th^ day after sowing; for the treatments with NaCl addition the maximum values of germination were observed between the 9^th^ and 12^th^ day (Figure \@ref(fig:gerit)A-E). Regardless of the genotypes, first germination was observed on the 3^rd^ day in 0 mM NaCl, while in the 50 mM and 75 mM NaCl, the germination was generally initiated on the 4^th^ day, but arranged 5^th^ day and 7^th^ day in 100 mM and 150 mM NaCl, respectively. However, regardless of treatments and salinity levels, germination became stable since 13^th^ day (Figure \@ref(fig:gerit)).
+
 
 ```{r 20160902PE}
 url <- "https://docs.google.com/spreadsheets/d/1dllWXzFE9ndO4ujbT2JPynvp9sDrDLpG5YCRO0KJn-c/edit#gid=439833954"
 fb <- gsheet::gsheet2tbl(url) %>% as_data_frame()
 ```
 
-```{r jcger, fig.align='center', fig.cap= "Germinability (A), mean germination time (B), germination synchrony (C) germination uncertainty (D) evaluated in five genotypes of *Jatropha curcas* L. under different NaCl concentrations (0, 50, 75, 100 and 150 mM). The vertical bars represent the mean (± SE). The mean differences between the accessions are represented by different capital letters and between salt levels by different lowercase letters (SNK, p ≤ 0.05). N = 4"}
+```{r jcger, fig.align='center', fig.cap= "Germinability (A), mean germination time (B), germination synchrony (C) germination uncertainty (D) evaluated in five genotypes of *Jatropha curcas* L. under different NaCl concentrations (0, 50, 75, 100 and 150 mM). The vertical bars represent the mean (± SE). The mean differences between the accessions are represented by different capital letters and between salt levels by different lowercase letters (SNK, p = 0.05). n = 4 "}
 
 # germination data --------------------------------------------------------
 
@@ -371,7 +403,11 @@ grp <-  GerminaR::fplot(mc, type = "bar", color = F,
                         erb = T, sig = "s", 
                         lmt = c(0,100), 
                         brk = 10)+
-  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))+
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 
 # mean germination time ---------------------------------------------------
@@ -386,14 +422,18 @@ mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>%
                 "Ba", "Ab", "Ab", "Ab", "Cc",
                 "Aa", "Aa", "Aa", "Ab", "Ac" ))
 
-mgt <-  GerminaR::fplot(mc, type = "bar", color = F,
+mgt <-  GerminaR::fplot(mc, type = "bar", color = F, lgd = "none",
                         x = "Genotype", xlab = "Genotypes",
                         y =  "mean", ylab = "Mean germination time (days)",
                          z = "Salt", lgl = "NaCl (mM)",
                         erb = T, sig = "s", 
                         lmt = c(0,15), 
                         brk = 1)+
-  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))+
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 
 # sinchrony ---------------------------------------------------------------
@@ -407,13 +447,17 @@ mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>%
                 "Aa", "Aa", "Aa", "Aa", "Aa",
                 "Aa", "Ab", "Aa", "Ab", "Ac" ))
 
-syn <-  GerminaR::fplot(mc, type = "bar", color = F,
+syn <-  GerminaR::fplot(mc, type = "bar", color = F, lgd = "none",
                         x = "Genotype", xlab = "Genotypes",
                         y =  "mean", ylab = "Germination sinchrony",
                          z = "Salt", lgl = "NaCl (mM)",
                         erb = T, sig = "s", 
                         lmt = c(0,0.4))+
-  scale_x_discrete("Genotypes",labels = c("183", "114", "218", "171", "133"))
+  scale_x_discrete("Genotypes",labels = c("183", "114", "218", "171", "133"))+
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 
 # uncertany ---------------------------------------------------------------
@@ -427,7 +471,7 @@ mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>%
                 "Aa", "Aa", "Aa", "Aa", "Ab",
                 "Aa", "Aa", "Ab", "Aa", "Ab" ))
 
-unc <-  GerminaR::fplot(mc, type = "bar", color = F,
+unc <-  GerminaR::fplot(mc, type = "bar", color = F, lgd = "none",
                         x = "Genotype", xlab = "Genotypes",
                         y =  "mean", ylab = "Germination uncertany (bits)",
                          z = "Salt", lgl = "NaCl (mM)",
@@ -440,24 +484,24 @@ unc <-  GerminaR::fplot(mc, type = "bar", color = F,
 
 # germination multiplot ---------------------------------------------------
 
-grmplot <- ggdraw() +
-            draw_plot(grp, width = 0.5, height = 0.5, x = 0.0, y = 0.5) +
-            draw_plot(mgt, width = 0.5, height = 0.5, x = 0.5, y = 0.5) +
-            draw_plot(syn, width = 0.5, height = 0.5, x = 0.0, y = 0.0) +
-            draw_plot(unc, width = 0.5, height = 0.5, x = 0.5, y = 0.0) +
-            draw_plot_label(label = c("A", "B", "C", "D"), 
-                          x = c(0.0, 0.5, 0.0, 0.5), 
-                          y = c(1, 1, 0.5, 0.5))
+# grmplot <- ggdraw() +
+#             draw_plot(grp, width = 0.5, height = 0.5, x = 0.0, y = 0.5) +
+#             draw_plot(mgt, width = 0.5, height = 0.5, x = 0.5, y = 0.5) +
+#             draw_plot(syn, width = 0.5, height = 0.5, x = 0.0, y = 0.0) +
+#             draw_plot(unc, width = 0.5, height = 0.5, x = 0.5, y = 0.0) +
+#             draw_plot_label(label = c("A", "B", "C", "D"), 
+#                           x = c(0.0, 0.5, 0.0, 0.5), 
+#                           y = c(1, 1, 0.5, 0.5))
 
-#grmplot <- plot_grid(grp, mgt, syn, unc, ncol = 2, labels = "AUTO")
+grmplot  <- cowplot::plot_grid(ncol = 1, grp, mgt, syn, unc, labels = c("A", "B", "C", "D"))
 
-cowplot::ggsave("img/grmplot.png", dpi= 300, width = 210*0.9 , height = 297*0.5, units = "mm")
+cowplot::ggsave("img/grmplot.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
 
 knitr::include_graphics("img/grmplot.png")
 
 ```
 
-```{r gerit, fig.align='center', fig.cap="Cumulative germination in the time evaluated in five genotypes of *Jatropha curcas* L. under different concentrations of NaCl (0, 50, 75, 100 and 150 mM). (A) Genotype 183. (B) Genotype 114. (C) Genotype 218. (D) Genotype 171. (E) Genotype 133. (F) Average germination of five genotypes per NaCl concentration in irrigation water."}
+```{r gerit, fig.align='center', fig.cap="Cumulative germination in the time evaluated in five genotypes of Jatropha curcas L. under different concentrations of NaCl (0, 50, 75, 100 and 150 mM). Genotype 183 (A), 114 (B) 218 (C), 171 (D) and 133 E)"}
 
 ## Germination in Time
 
@@ -561,7 +605,7 @@ slg <- fplot(data = gnts, type = "line", x = "evaluation", y = "mean", z = "Salt
 
 # germination in time multiplot -------------------------------------------
 
-grtplot <- plot_grid(G1, G2, G3, G4, G5, slg, ncol = 2, labels = c("A", "B", "C", "D", "E", "F"))
+grtplot <- plot_grid(G1, G2, G3, G4, G5, ncol = 2, labels = c("A", "B", "C", "D", "E"))
 
 cowplot::ggsave("img/grtplot.png", dpi= 300, width = 210*0.9 , height = 297*0.7, units = "mm")
 
@@ -569,14 +613,10 @@ knitr::include_graphics("img/grtplot.png")
 
 ```
 
+**Biometric and biomass components** Although the germination was evaluated up to the concentration of 150 mM NaCl, the biomass production was only computed up to 100 mM NaCl, and the biomass parameters were strongly affected by the increase in salinity.The leaf area (LFA) was only possible to be evaluated until the concentration of 75 mM NaCl, since these was the parameters most affected by the increase of salts in the irrigation solution. The genotypes 218, 171 and 133 presented the highest values in the control concentration, while for 50 mM the genotypes with the highest performance were 133, 114 and 183. The genotypes 133, 114, 171 and 183 presented the highest value in the 0 mM treatment, followed by genotype 183 and 171 that did not show significant differences between them. At the concentration of 50 mM, genotype 114 continued to present larger leaf area, followed by genotype 133, while at the 75 mM concentration there was no difference between the genotypes. There was a tendency of plant height reduction (HGT) with increasing salts. The HGT reached approximately 13 cm in the control, but was strongly reduced until values smaller than 3 cm to 100 Mm of NaCl, fact clearly recorded in genotype 183 (Figure \@ref(fig:index)A). The diameter of the stem (STD) presented reduction with the increase of the concentration of the salts, even without statistical differences. At concentrations of 50 mM and 75 mM, the genotypes 183 and 114 obtained the highest values of stem diameter, while at the concentration of 100 mM they had the lowest values (Figure \@ref(fig:index)C). For the leaf weight ratio, it is possible to observe a tendency in the reduction with the salinity increase, being genotype 218 presenting a ratio of 0.42, followed by genotype 183 with a ratio of 0.39. These two genotypes were the ones that best behaved in this allometric parameter. Genotype 171 showed no significant difference in leaf weight ratio up to 50 mM, while genotype 114 increased its biomass accumulation to 50 mM. All genotypes showed drastic reduction from 75 mM NaCl, with a reduction of biomass accumulation in the leaf with increasing NaCl concentration in the irrigation water (Figure \@ref(fig:index)F). A distinct profile is verified in the stem dry weight ratio (SWR), which was increased with elevation of salinity, even though no significant effect was observed up to the 50 mM concentration. For the 75 mM concentration, genotype 183 was better than the others, although similar to genotypes 171 and 133 at 100 mM concentration (Figure \@ref(fig:index)D). The root weight ratio (RWR) showed a distinct behavior for each genotype, with genotypes 171, 133 and 218, increasing biomass of the roots up to 75 mM and showed a continuous increment up to 100 mM. On the other hand, the genotype 183 showed increment up to 50 mM and from there had its values reduced. Genotype 114 was apparently unaffected by the increase in NaCl concentration (Figure \@ref(fig:index)B). 
 
-**Biometric and biomass components** Although the germination was evaluated up to the concentration of 150 mM NaCl, the biomass production was only computed up to 100 mM NaCl, and the biomass parameters were strongly affected by the increase in salinity. Regardless of the genotype,  leaf dry biomass (LDW) accumulation was reduced to zero in 100 mM. For the control, the LDW did not show difference between the genotypes 114, 171 and 183 with 5.19 g, 4.62 g and 5.11 g respectively. On the other hand, for genotypes 133 and 218 the LDW were 2.37 and 2.43, respectively. At the concentration of 50 mM, genotype 114 obtained the highest LDW at 1.39 g, followed by genotypes 171, 133, 183. Genotype 218 was the most sensitive to salinity, since it had LDW of 0.23 g. For the treatment of 75 mM, the LDW was reduced to values close to zero for all genotypes (Table \@ref(tab:morphological)). For the root dry biomass (RDW), genotype 114 presented the best development with 0, 50 and 75 mM NaCl in comparison to the other genotypes, whereas for 100 mM the genotype 218 had greater accumulation of biomass in relation to the other genotypes. The genotype 171 did not show differences in the accumulation of biomass for irrigation of 50, 75 and 100 mM with values of 0.31 g, 0.22 g and 0.26 g respectively. For stem dry biomass (SDW), genotype 114 showed the best development at 0 mM and 50 mM, while genotype 183 did not show significant differences between 50 mM and 75 mM NaCl treatments. At the concentration of 100 mM the genotypes 218, 133 and 171 showed an increase in the biomass accumulation of the stem with values of 0.98 g, 1.59 g and 2.40 g respectively. For the total dry biomass (TDW), genotype 114 was higher than the others, at least at concentrations of 0 and 50 mM, presenting values of 20.63 g and 4.31 g, respectively. Genotypes 171 and 183 did not show statistically significant differences in TDW. Genotypes 133, 218 and 171 showed an increase in biomass at 100 mM, with values of 1.78 g, 1.85 g and 2.26 g, respectively, while the same genotypes at the 75 mM concentration showed no significant differences.
 
-The parameters of unitary leaf area (LFA) and total leaf area (TLFA) were only possible to be evaluated until the concentration of 75 mM NaCl, since these were the parameters most affected by the increase of salts in the irrigation solution. The genotypes 218, 171 and 133 presented the highest values in the control concentration, while for 50 mM the genotypes with the highest performance were 133, 114 and 183. The genotypes 133, 114, 171 and 183 presented the highest value in the control treatment, followed by genotype 183 and 171 that did not show significant differences between them. At the concentration of 50 mM, genotype 114 continued to present larger leaf area, followed by genotype 133, while at the 75 mM concentration there was no difference between the genotypes. There was a tendency of plant height reduction (HGT) with increasing salts (Table \@ref(tab:morphological)). The HGT reached approximately 13 cm in the control, but was strongly reduced until values smaller than 3 cm to 100 Mm of NaCl, fact clearly recorded in genotype 183 (Table \@ref(tab:morphological)). The diameter of the stem (STD) presented reduction with the increase of the concentration of the salts, even without statistical differences. At concentrations of 50 mM and 75 mM, the genotypes 183 and 114 obtained the highest values of stem diameter, while at the concentration of 100 mM they had the lowest values (Table \@ref(tab:morphological)).
-
-For the leaf weight ratio, it is possible to observe a tendency in the reduction with the salinity increase, being genotype 218 presenting a ratio of 0.42, followed by genotype 183 with a ratio of 0.39. These two genotypes were the ones that best behaved in this allometric parameter. Genotype 171 showed no significant difference in leaf weight ratio up to 50 mM, while genotype 114 increased its biomass accumulation to 50 mM. All genotypes showed drastic reduction from 75 mM NaCl, with a reduction of biomass accumulation in the leaf with increasing NaCl concentration in the irrigation water (Figure \@ref(fig:index)A). A distinct profile is verified in the stem dry weight ratio (SWR), which was increased with elevation of salinity, even though no significant effect was observed up to the 50 mM concentration. For the 75 mM concentration, genotype 183 was better than the others, although similar to genotypes 171 and 133 at 100 mM concentration (Figure \@ref(fig:index)B). The root weight ratio (RWR) showed a distinct behavior for each genotype, with genotypes 171, 133 and 218, increasing biomass of the roots up to 75 mM and showed a continuous increment up to 100 mM. On the other hand, the genotype 183 showed increment up to 50 mM and from there had its values reduced. Genotype 114 was apparently unaffected by the increase in NaCl concentration (Figure \@ref(fig:index)C). In the shoot weight ratio (STWR), it was not possible to observe a trend with increasing NaCl concentration; However, genotypes 183, 114, 171 and 133 in the treatment of 100 mM obtained the highest values of STWR in this respect of the other salt treatments, while genotype 218 showed reduced STWR when salinity increased (Figure \@ref(fig:index)D).
-
-```{r morphological}
+```{r morphological, eval=FALSE}
 
 dtmv <- fb %>% 
   dplyr::select(Genotype, Salt, LDW = LDB, SDW = SDB, RDW = RDB, TLFA, LFA, HGT.24, STD.24) %>% 
@@ -774,6 +814,101 @@ knitr::kable(x = tbb,
 
 ```{r index, fig.align='center', fig.cap= "Leaf dry weight ratio (A), stem dry weight ratio (B), root dry weight ratio (C) and shoot dry weight ratio (D) evaluated in five genotypes of *Jatropha curcas* L. under different concentrations NaCl (0, 50, 75, 100 and 150 mM). The vertical bars represent the mean (± SE). The mean differences between the accessions are represented by different capital letters and between salt levels by different lowercase letters (SNK, p ≤ 0.05). N = 4."}
 
+dtmv <- fb %>% 
+  dplyr::select(Genotype, Salt, LDW = LDB, SDW = SDB, RDW = RDB, TLFA, LFA, HGT.24, STD.24) %>% 
+  dplyr::mutate(Salt = factor(Salt, levels = c(0, 50, 75, 100, 150)), 
+                TDW = LDW+SDW+RDW, STDW = SDW+LDW) %>% 
+  dplyr::mutate(LWR = LDW/TDW,
+                SWR = SDW/TDW,
+                STWR = STDW/TDW,
+                RWR = RDW/TDW,
+                LAR = TLFA/TDW,
+                RSR = RDW/STDW) %>% 
+  dplyr::select(Genotype, Salt, LDW, SDW, RDW, STDW, TDW, TLFA, LFA, LWR, SWR, RWR, STWR, RSR, LAR, HGT.24, STD.24) %>% as.data.frame()
+
+
+# Biometric component
+
+# height (hgt)  -----------------------------------------------------------
+
+av <- aov(HGT.24 ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+
+sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
+   mutate( s = c("Aa", "Ab", "Ab", "Bc", 
+                "Aa", "Ab", "Ac", "Bd", 
+                "Aa", "Cb", "Bc", "Ac", 
+                "Aa", "Cb", "Ab", "Ab", 
+                "Aa", "Bb", "Ac", "Ad" )) 
+
+
+hgt <-  GerminaR::fplot(sm, type = "bar",
+             x = "Genotype", y =  "mean",  z = "Salt",
+             ylab = "Height (cm)" , xlab = "",
+             lgl = "NaCl (mM)" , erb = T,  
+             lmt = c(0, 20), 
+             sig = "s", lgd = "top") + 
+  scale_fill_grey("NaCl (mM)", start = 1, end = 0)+
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133")) +
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+
+
+# stem diameter -----------------------------------------------------------
+
+av <- aov(STD.24 ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
+    mutate( s = c("Aa", "Ab", "Ab", "Bc", 
+                "Aa", "Ab", "Ab", "Ac", 
+                "Aa", "Ab", "Ab", "Ab", 
+                "Aa", "Ab", "Ab", "Ab", 
+                "Aa", "Ab", "Ab", "Ab" ))
+
+std <-  GerminaR::fplot(sm, type = "bar",
+             x = "Genotype", y =  "mean",  z = "Salt",
+             ylab = "Stem diameter (mm)" , xlab = "",
+             lgl = "NaCl (mM)" , erb = T,  
+             lmt = c(0, 10), 
+             sig = "s", lgd = "none") + 
+  scale_fill_grey("NaCl (mM)", start = 1, end = 0)+
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133")) +
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+
+
+
+# Leaf Area per plant (lfa) -----------------------------------------------
+
+
+av <- aov(LFA ~ Genotype*Salt, dtmv)
+# summary(av)
+mc <- SNK.test(av, c("Genotype", "Salt"))
+sm <- dtsm(mc)
+sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
+  mutate( s = c("Ba", "Bb", "Ab", "Ac", 
+                "Ba", "Bb", "Bc", "Ad", 
+                "Aa", "Bb", "Bb", "Ac", 
+                "Ba", "Bb", "Bb", "Ac", 
+                "Ba", "Ab", "Bc", "Ad" ))
+
+lfa <-  GerminaR::fplot(sm, type = "bar",
+             x = "Genotype", y =  "mean",  z = "Salt",
+             ylab = "Leaf area (cm^2)" , xlab = "",
+             lgl = "NaCl (mM)" , erb = T,  
+             lmt = c(0, 200), 
+             sig = "s", lgd = "none") + 
+  scale_fill_grey("NaCl (mM)", start = 1, end = 0)+
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133")) 
+
 # Index caculations -------------------------------------------------------
 
 # lwr ---------------------------------------------------------------------
@@ -795,7 +930,7 @@ ldr <-  GerminaR::fplot(sm, type = "bar",
              ylab = "Leaf dry weight ratio" , xlab = "",
              lgl = "NaCl (mM)" , erb = T,  
              lmt = c(0, .601), 
-             sig = "s", lgd = "top") + 
+             sig = "s", lgd = "none") + 
   scale_fill_grey("NaCl (mM)", start = 1, end = 0)+
   scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))
 
@@ -817,9 +952,13 @@ sdr <-  GerminaR::fplot(sm, type = "bar",
              ylab = "Stem dry weight ratio" , xlab = "" ,
              lgl = "NaCl (mM)" , erb = T,
              lmt = c(0,1),
-             sig = "s", lgd = "top") + 
+             sig = "s", lgd = "none") + 
   scale_fill_grey(expression("NaCl (mM)"), start = 1, end = 0)+
-  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133")) +
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 # stwr --------------------------------------------------------------------
 
@@ -841,7 +980,11 @@ stdr <-  GerminaR::fplot(sm, type = "bar",
              lmt = c(0,1), 
              sig = "s", erb = T, lgd = "none") + 
   scale_fill_grey(expression("NaCl (mM)"), start = 1, end = 0)+
-  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133")) +
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 # rwr ---------------------------------------------------------------------
 
@@ -861,32 +1004,29 @@ rdr <-  GerminaR::fplot(sm, type = "bar",
              ylab = "Root dry weight ratio" , xlab = "gen?tipo" ,
              lgl = "Sal (mM)" , 
              lmt = c(0,0.601),
-             sig = "s", erb = T, lgd = "none") + 
+             sig = "s", erb = T, lgd = "top") + 
   scale_fill_grey(expression("NaCl (mM)"), start = 1, end = 0)+
-  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))
+  scale_x_discrete("",labels = c("183", "114", "218", "171", "133")) +
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 
 # multiplot index ---------------------------------------------------------
 
-rtplot <- plot_grid(ldr, sdr, rdr, stdr, ncol = 2, labels = c("A", "B", "C", "D"))
-
-rtplot <- ggdraw() +
-  draw_plot(ldr, width = 0.5, height = 0.5, x = 0.0, y = 0.5) +
-  draw_plot(sdr, width = 0.5, height = 0.5, x = 0.5, y = 0.5) +
-  draw_plot(rdr, width = 0.5, height = 0.5, x = 0.0, y = 0.0) +
-  draw_plot(stdr, width = 0.5, height = 0.5, x = 0.5, y = 0.0) +
-  draw_plot_label(label = c("A", "B", "C", "D"), 
-                  x = c(0.0, 0.5, 0.0, 0.5), 
-                  y = c(1, 1, 0.5, 0.5))
+rtplot <- plot_grid(hgt, rdr, std, sdr, lfa, ldr, ncol = 2, labels = c("A", "B", "C", "D", "E", "F"))
 
 
-cowplot::ggsave("img/rtplot.png", dpi= 300, width = 210*0.9 , height = 297*0.5, units = "mm")
+cowplot::ggsave("img/rtplot.png", dpi= 300, width = 210*0.9 , height = 297*0.8, units = "mm")
 
 knitr::include_graphics("img/rtplot.png")
 
 ```
 
-**Multivariate analysis of the salinity experiment** The germination parameters were negatively affected by the increase in the salt concentration; There was a negative correlation between germination percentage (r = -0.55, p ≤ 0.05) and germination synchrony (r = -0.69, p value ≤ 0.001). On the other hand, the mean germination time was positively significant when correlated with the increase of salts (R = 0.66, p ≤ 0.001). However, there was no significant correlation between germination uncertainty and salt increase (r = -0.23, p = 0.321). The biomass parameters were significantly affected with increasing salts. The correlations between this parameter in relation to the leaf dry weight (r = -0.86, p ≤ 0.001), the leaf area (r = -0.89, p ≤ 0.001), and plant height ( R = -0.89, p ≤ 0.001) and stem diameter (r = -0.91, p ≤ 0.001). Other allometric parameters were also influenced by saline addition; the negative relationship between salinity and leaf weight ratio (R = -0.90, p ≤ 0.001) and leaf area ratio (r = -0.94, p ≤ 0.001). On the other hand, were strongly increased with salinity the stem dry weight ratio (R = 0.74, p ≤0.001). The principal components analysis (PCA) shows that approximately 74.4% of the variation can be explained by the parameters studied in this work. In the first component the variables LDW, TLFA, HGT and TDW were the ones that presented the greatest contribution in the variance and are negatively correlated with the increase of NaCl, while the variables with positive correlation were the MGT and SDW. The genotypes that showed the best response were 114, 171 and 183 and the susceptible genotypes 133 and 218 (Figure \@ref(fig:pca)).
+
+**Multivariate analysis of the salinity experiment.** The germination parameters were negatively affected by the increase in the salt concentration; There was a negative correlation between germination percentage (r = -0.55, p ≤ 0.05) and germination synchrony (r = -0.69, p value ≤ 0.001). On the other hand, the mean germination time was positively significant when correlated with the increase of salts (R = 0.66, p ≤ 0.001). However, there was no significant correlation between germination uncertainty and salt increase (r = -0.23, p = 0.321). The biomass parameters were significantly affected with increasing salts. The correlations between this parameter in relation to the leaf dry weight (r = -0.86, p ≤ 0.001), the leaf area (r = -0.89, p ≤ 0.001), and plant height ( R = -0.89, p ≤ 0.001) and stem diameter (r = -0.91, p ≤ 0.001). Other allometric parameters were also influenced by NaCl  addition; the negative relationship between salinity and leaf weight ratio (R = -0.90, p ≤ 0.001) and leaf area ratio (r = -0.94, p ≤ 0.001). On the other hand, were strongly increased with salinity the stem dry weight ratio (R = 0.74, p ≤0.001). The principal components analysis (PCA) shows that approximately 74.4% of the variation can be explained by the parameters studied in this work. In the first component the variables LDW, TLFA, HGT and TDW were the ones that presented the greatest contribution in the variance and are negatively correlated with the increase of NaCl, while the variables with positive correlation were the MGT and SDW. The genotypes that showed the best response were 114, 171 and 183 and the susceptible genotypes 133 and 218 (Figure \@ref(fig:pca)). 
+
 
 ```{r pca, fig.align='center', fig.cap="Principal components analysis (PCA) of the variables evaluated in five genotypes of *Jatropha curcas* L. under different concentrations of NaCl (0, 50, 75, 100 and 150 mM). GRM, Germinability; MGT, mean germination time; UNC, Uncertainty of germination; SYN, Synchronism of germination; LDW, leaf dry weight; RDW, root dry weight; SDW, stem dry weight; TDW, total dry weight; LFA,leaf area; TLFA, total leaf area; LDWR, leaf dry weight ratio; SDWR, stem dry weight ratio; RDWR, root dry weight ratio; STWR, shoot dry weight ratio; HGT, plant length; STD, stem diameter."}
 
