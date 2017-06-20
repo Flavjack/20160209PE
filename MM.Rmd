@@ -2,66 +2,15 @@
 
 **Aging tests.**  To test the effect of storage on seed viability, an artificial aging test was used to reduce the water content in the interstices of the seeds with a desiccant material composed of silica gel (Sigma-Aldrish, part number 10087). The genotype used in this experiment was 171 from Maceió, AL, Brazil. In each experimental unit 50 seeds of *J. curcas*, arranged in germination boxes (110 x 110 x 35 mm) were added under a stainless steel mesh suspended 2 cm from the desiccant. Five storage times (i.e., 0, 3, 6, 9, 12 months) were tested and stored under refrigerator at 4 ± 2°C. After each storage period, the seeds were removed to the germination boxes with desiccant and then placed to germinate.
 
-**Germination tests with aged seeds**. After removed from germination boxes with desiccant, the seeds were germinated in germination boxes (110 x 110 x 35 mm) containing two sheets of germination test paper soaked with 2x the weight of the paper in water and were sealed and placed in a growth chamber (mod. NT 708, New Technical Instruments, Piracicaba, SP, Brazil). The incubator was equipped with four cold white fluorescent lamps of 20 W with 40 μmoles m^-2^ s^-1^ at the level of the germination boxes. The photoperiod was 12 h and the temperature conditions were 25 ± 0.5°C. Germination were daily evaluated for a period of 25 days. It was considered germinated, the seed whose radicle has emerged from the integument.
+**Germination tests with aged seeds**. After removed from germination boxes with desiccant, the seeds were allowed to germinate in germination boxes (110 x 110 x 35 mm) containing two sheets of germination test paper soaked with 2x the weight of the paper in water and were sealed and placed in a growth chamber (mod. NT 708, New Technical Instruments, Piracicaba, SP, Brazil). The incubator was equipped with four cold white fluorescent lamps of 20 W with 40 μmoles m^-2^ s^-1^ at the level of the germination boxes. The photoperiod was 12 h and the temperature conditions were 25 ± 0.5°C. Germination were daily evaluated for a period of 25 days. It was considered germinated, the seed whose radicle has emerged from the integument.
 
-**Biochemical analysis of the seeds used in the aging test.** A portion of 10% of the aged seeds was carefully ground in liquid nitrogen and stored at -20°C until use. For extraction of soluble carbohydrates (TSC), soluble amino acids (TSA) and starch (STR), samples were solubilized in 50% (v/v) ethanol [@trethewey1998combined], whereas for analysis of total soluble proteins (TSP), the samples were extracted in Stitt buffer [@armengaud2009multilevel]. The measures of soluble carbohydrates and start, soluble proteins and soluble amino acids the methodologies described by Dubois [@dubois1956colorimetric], Bradford [@bradford1976rapid] and Moore and Stein [@moore1954modified] were used, respectively. For the quantification of the oil content (OIL) the methodology described in detail by Ahmad [@ahmad1981ricinoleic]. To quantification of glucose (GLC), fructose (FTS) and sucrose (SCR) [@stitt198932], coupled to the production of 6-phosphogluconate, in the sequential presence of hexokinase, phosphoglucoisomerase, glucose-6-phosphate dehydrogranase and invertase enzymes were used, as described in Stitt [@stitt198932]. All these analyzes were performed in triplicate.
-
-
-**Physiological analyzes coupled to the aging test.** The relative water content (RWC) of seeds was calculated as described Moncaleano-Escandon [@moncaleano2013germination]. The water potential (WTP) of the seeds was quantified with the dewpoint water potential meter (WP4C; Decagon Devices, Pullman, WA, USA), where the seeds were lightly cracked to allow water to pass through the seeds to the internal environment. The values were obtained in MPa. For respiratory rate estimation (RPR), 5% of the seeds used in each storage period were inserted whole in a CO~2~ flow chamber (6400-09; LiCOR, Lincoln, NE, USA). For each storage time, 10 different samples were used as replicates. In each measurement procedure three cycles of 102 seconds were performed, with a 2 second interval between the readings. During this time the increase in CO~2~ concentration inside the chamber was monitored. The reference CO~2~ was calibrated, at each measurement, according to the CO~2~ concentration of the environment (~ 400 μmol CO~2~ m^-2^ s^-1^). The net respiration rate was expressed in μmol CO~2~ h^-1^ g^-1^ seed.
+**Biochemical analysis of the seeds used in the aging test.** A portion of 10% of the aged seeds was carefully ground in liquid nitrogen and stored at -20°C until use. For extraction of soluble carbohydrates (TSC), soluble amino acids (TSA) and starch (STR), samples were solubilized in 50% (v/v) ethanol [@trethewey1998combined], whereas for analysis of total soluble proteins (TSP), the samples were extracted in Stitt buffer [@armengaud2009multilevel]. The measures of soluble carbohydrates and starch, soluble proteins and soluble amino acids the methodologies described by Dubois [@dubois1956colorimetric], Bradford [@bradford1976rapid] and Moore and Stein [@moore1954modified] were used, respectively. For the quantification of the oil content (OIL) the methodology described in detail by Ahmad [@ahmad1981ricinoleic]. To quantification of glucose (GLC), fructose (FTS) and sucrose (SCR) [@stitt198932], coupled to the production of 6-phosphogluconate, in the sequential presence of hexokinase, phosphoglucoisomerase, glucose-6-phosphate dehydrogranase and invertase enzymes were used, as described in Stitt [@stitt198932]. All these analyzes were performed in triplicate.
 
 
-**Germination tests in the presence of NaCl.** For this experiment seeds of five genotypes (Table \@ref(tab:genotypes)) of *J. curcas* originating from different producing regions of Brazil, given by EMBRAPA Agroenergia (Brasília, DF – Brazil), where kept at 4°C until their use. The germination was carried out in a greenhouse at the Federal University of Pernambuco, Department of Botany, Recife, PE (8°02"59.0' S; 34°56"54.9' W, 4 masl). The average temperature being recorded during the experiments using a portable mini climatic estation (mod. KR420, Akron Measure Instrument, Leuven, Belgium). In this experiment, five different concentrations of NaCl (0, 50, 75, 100 and 150 mM) were tested in the irrigation water, with zero being destiled water. After the soaking, all seeds were disinfected with NaOCl (2%) for 10 minutes and triply rinsed with distilled water. Thus, the seeds were germinated in polypropylene boxes (20 x 20 x 5 cm) containing 2,500 g of river washed sand, air-dried. Each boxes containing 25 seeds were considered as an experimental unit. The boxes were irrigated daily with 300 mL of water containing Hoagland nutrient solution [@epstein1972mineral] at the concentration of 25%, this being the volume of irrigation required (i.e., previously tested) to leach excess salts and prevent their accumulation in soil. The germination was evaluated daily for 25 consecutive days until the seedlings were collected. In this experiment, it was considered seed germinated when the aerial part emerged from the soil.
-
-```{r genotypes}
-
-gnt <- dplyr::data_frame(
-  
-  Genotype = c(
-    "183", 
-    "114", 
-    "218", 
-    "171",
-    "133"),
-  
-  City = c(
-    "Jaíba",
-    "Umuarama",
-    "São Miguel do Araguaia",
-    "Maceió",
-    "Santa Inês"),
-  
-  State = c(
-    "Minas Gerais",
-    "Paraná",
-    "Goiás", 
-    "Alagoas",
-    "Maranhão"),
-  
-  Location = c(
-
-"23°47'55.0'' S 53°18'48'' W" ,
-"15°10'27.0'' S 43°53'18'' W",
-"13°55'57.0'' S 50°09'17'' O",
-"09°27'60.0'' S 35°49'41'' W",
-"03°39'24.9'' S 45°22'36'' W" ),
-
-  "Altitude (masl)" = c(
-      478,
-      430,
-      350,
-      131,
-      31)
-         
-)
-
-knitr::kable(
-  gnt,
-  booktabs = TRUE,
-  caption = "Information and location of the five genotypes of *Jatropha curcas* studied under salinity conditions."
-)
+**Physiological analyzes coupled to the aging test.** The relative water content (RWC) of seeds was calculated as described to Moncaleano-Escandon [@moncaleano2013germination]. The water potential (WTP) of the seeds was quantified with the dewpoint water potential meter (WP4C; Decagon Devices, Pullman, WA, USA), where the seeds were lightly cracked to allow water to pass through the seeds to the internal environment. The values were obtained in MPa. For respiratory rate estimation (RPR), 5% of the seeds used in each storage period were inserted whole in a CO~2~ flow chamber (6400-09; LiCOR, Lincoln, NE, USA). For each storage time, 10 different samples were used as replicates. In each measurement procedure three cycles of 102 seconds were performed, with a 2 second interval between the readings. During this time the increase in CO~2~ concentration inside the chamber was monitored. The reference CO~2~ was calibrated, at each measurement, according to the CO~2~ concentration of the environment (~ 400 μmol CO~2~ m^-2^ s^-1^). The net respiration rate was expressed in μmol CO~2~ h^-1^ g^-1^ seed.
 
 
-```
+**Germination tests in the presence of NaCl.** For this experiment seeds of five genotypes (Table \@ref(tab:genotypes)) of *J. curcas* originating from different producing regions of Brazil, given by EMBRAPA Agroenergia (Brasília, DF – Brazil), where kept at 4°C until their use. The germination was carried out in a greenhouse at the Federal University of Pernambuco, Department of Botany, Recife, PE (8°02"59.0' S; 34°56"54.9' W, 4 masl). The average temperature being recorded during the experiments using a portable mini climatic estation (mod. KR420, Akron Measure Instrument, Leuven, Belgium). In this experiment, five different concentrations of NaCl (0, 50, 75, 100 and 150 mM) were tested in the irrigation water, with zero being destiled water. After the soaking, all seeds were disinfected with NaOCl (2%) for 10 minutes and triply rinsed with distilled water.Thus, the seeds were germinated in polypropylene boxes (200 x 200 x 50 mm) containing 2,500 g of river washed sand, air-dried, where 25 seeds were soaked. Each boxes containing 25 seed were considered as an experimental unit. The boxes were irrigated daily with 300 mL of water containing Hoagland nutrient solution [@epstein1972mineral] at the concentration of 25%, this being the volume of irrigation required (i.e., previously tested) to leach excess salts and prevent their accumulation in soil. The germination was evaluated daily for 25 consecutive days until the seedlings were collected. In this experiment, it was considered seed germinated when the aerial part emerged from the soil. The experiment were replicated five times.
 
 **Evaluation of germination parameters.** For the two experiments the different germination parameters were calculated: germinability (GRP), mean germination time (MGT), germination uncertainty (GRU) and germination synchrony (GRS). All calculations, graphs and statistics were performed with GerminaR package [@R-GerminaR].
 
