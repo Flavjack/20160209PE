@@ -136,7 +136,7 @@ unc <- fplot(data = mc, type = "bar", color = F,
              x = "mes", xlab = "Storage (months)", 
              y = "mean", ylab = "Uncertany",
              z = "mes",
-             lmt = c(0, 22),
+             lmt = c(0, 3.8),
              #brk = 2,
              erb = T, 
              sig = "sg",
@@ -295,7 +295,7 @@ scr <- fplot(data = mc, type = "bar", color = F,
              x = "mes", xlab = "Storage (months)", 
              y = "mean", ylab = "Sucrose (mg Kg^{-1})",
              z = "mes",
-             lmt = c(0, 7),
+             lmt = c(0, 7.8),
              brk = 1,
              erb = T, 
              sig = "sg",
@@ -335,7 +335,16 @@ fts <- fplot(data = mc, type = "bar", color = F,
              sig = "sg",
              lgd = "none")
 
-bioquim2 <- cowplot::plot_grid(ncol = 1, cst, scr, glc, fts, labels = c("A", "B", "C", "D"))
+bioquim2 <- ggdraw() +
+            draw_plot(cst, width = 0.955, height = 0.268, x = -0.005, y = 0.75) +
+            draw_plot(scr, width = 0.925, height = 0.268, x = 0.025, y = 0.50) +
+            draw_plot(glc, width = 0.94, height = 0.268, x = 0.01, y = 0.25) +
+            draw_plot(fts, width = 0.95, height = 0.268, x = 0.00, y = 0.00) +
+            draw_plot_label(label = c("A", "B", "C", "D"),
+                          x = c(0.92, 0.92, 0.92, 0.92),
+                          y = c(1.00, 0.75, 0.50, 0.25))
+
+# bioquim2 <- cowplot::plot_grid(ncol = 1, cst, scr, glc, fts, labels = c("A", "B", "C", "D"))
 cowplot::ggsave("img/bioquim2.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
 
 knitr::include_graphics("img/bioquim2.png")
@@ -392,16 +401,22 @@ trs <- fplot(data = mc, type = "bar", color = F,
              x = "mes", xlab = "Storage (months)", 
              y = "mean", ylab = "Respiratory rate (mmol CO[2] h^{-1} g^{-1})",
              z = "mes",
-             lmt = c(0, 140),
+             lmt = c(0, 155),
              brk = 20,
              erb = T, 
              sig = "sg",
              lgd = "none")
 
-
-
-fisio <- cowplot::plot_grid(ncol = 1, tra, yw, trs, labels = c("A", "B", "C", "D"))
-cowplot::ggsave("img/fisio.png", dpi= 300, width = 210*0.425 , height = 297*0.9, units = "mm")
+fisio <- ggdraw() +
+            draw_plot(tra, width = 0.927, height = 0.35, x = 0.023, y = 0.645) +
+            draw_plot(yw, width = 0.95, height = 0.35, x = 0.0, y = 0.323) +
+            draw_plot(trs, width = 0.95, height = 0.35, x = 0.0, y = 0.0) +
+            draw_plot_label(label = c("A", "B", "C"),
+                          x = c(0.92, 0.92, 0.92),
+                          y = c(0.99, 0.66, 0.34))
+                          
+# fisio <- cowplot::plot_grid(ncol = 1, tra, yw, trs, labels = c("A", "B", "C", "D"))
+cowplot::ggsave("img/fisio.png", dpi= 300, width = 210*0.4 , height = 297*0.6, units = "mm")
 knitr::include_graphics("img/fisio.png")
 ```
 
@@ -468,7 +483,7 @@ mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>%
                 "Ba", "Bc", "Ab", "Ab", "Ad",
                 "Ca", "Ba", "Ba", "Ba", "Ab" ))
 
-grp <-  GerminaR::fplot(mc, type = "bar", color = F,
+grp <-  GerminaR::fplot(mc, type = "bar", color = F, font = 0.8,
                         x = "Genotype", xlab = "Genotypes",
                         y =  "mean", ylab = "Germinability ('%')",
                         z = "Salt", lgl = "NaCl (mM)",
@@ -494,12 +509,12 @@ mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>%
                 "Ba", "Ab", "Ab", "Ab", "Cc",
                 "Aa", "Aa", "Aa", "Ab", "Ac" ))
 
-mgt <-  GerminaR::fplot(mc, type = "bar", color = F, lgd = "none",
+mgt <-  GerminaR::fplot(mc, type = "bar", color = F, lgd = "none", font = 0.8,
                         x = "Genotype", xlab = "Genotypes",
                         y =  "mean", ylab = "Mean germination time (days)",
                          z = "Salt", lgl = "NaCl (mM)",
                         erb = T, sig = "s", 
-                        lmt = c(0,15), 
+                        lmt = c(0,15.8), 
                         brk = 1)+
   scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))+
   
@@ -519,12 +534,12 @@ mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>%
                 "Aa", "Aa", "Aa", "Aa", "Aa",
                 "Aa", "Ab", "Aa", "Ab", "Ac" ))
 
-syn <-  GerminaR::fplot(mc, type = "bar", color = F, lgd = "none",
+syn <-  GerminaR::fplot(mc, type = "bar", color = F, lgd = "none", font = 0.8,
                         x = "Genotype", xlab = "Genotypes",
                         y =  "mean", ylab = "Germination sinchrony",
                          z = "Salt", lgl = "NaCl (mM)",
                         erb = T, sig = "s", 
-                        lmt = c(0,0.4))+
+                        lmt = c(0,0.45))+
   scale_x_discrete("Genotypes",labels = c("183", "114", "218", "171", "133"))+
   
   theme(axis.title.x=element_blank(),
@@ -543,29 +558,25 @@ mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>%
                 "Aa", "Aa", "Aa", "Aa", "Ab",
                 "Aa", "Aa", "Ab", "Aa", "Ab" ))
 
-unc <-  GerminaR::fplot(mc, type = "bar", color = F, lgd = "none",
+unc <-  GerminaR::fplot(mc, type = "bar", color = F, lgd = "none", font = 0.8,
                         x = "Genotype", xlab = "Genotypes",
                         y =  "mean", ylab = "Germination uncertany (bits)",
                          z = "Salt", lgl = "NaCl (mM)",
                         erb = T, sig = "s", 
-                        lmt = c(0,4))+
+                        lmt = c(0,3.7))+
   scale_x_discrete("Genotypes",labels = c("183", "114", "218", "171", "133"))
-
-
 
 
 # germination multiplot ---------------------------------------------------
 
-# grmplot <- ggdraw() +
-#             draw_plot(grp, width = 0.5, height = 0.5, x = 0.0, y = 0.5) +
-#             draw_plot(mgt, width = 0.5, height = 0.5, x = 0.5, y = 0.5) +
-#             draw_plot(syn, width = 0.5, height = 0.5, x = 0.0, y = 0.0) +
-#             draw_plot(unc, width = 0.5, height = 0.5, x = 0.5, y = 0.0) +
-#             draw_plot_label(label = c("A", "B", "C", "D"), 
-#                           x = c(0.0, 0.5, 0.0, 0.5), 
-#                           y = c(1, 1, 0.5, 0.5))
-
-grmplot  <- cowplot::plot_grid(ncol = 1, grp, mgt, syn, unc, labels = c("A", "B", "C", "D"))
+grmplot <- ggdraw() +
+            draw_plot(grp, width = 0.964, height = 0.26, x = -0.015, y = 0.73) +
+            draw_plot(mgt, width = 0.95, height = 0.26, x = 0.0, y = 0.4876) +
+            draw_plot(syn, width = 0.95, height = 0.26, x = 0.0, y = 0.246) +
+            draw_plot(unc, width = 0.936, height = 0.26, x = 0.015, y = 0.0054) +
+            draw_plot_label(label = c("A", "B", "C", "D"),
+                          x = c(0.92, 0.92, 0.92, 0.92),
+                          y = c(0.94, 0.74, 0.50, 0.25))
 
 cowplot::ggsave("img/grmplot.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
 
@@ -695,11 +706,18 @@ slg <- fplot(data = gnts, type = "line", x = "evaluation", y = "mean", z = "Salt
   scale_color_grey("NaCl (mM)", start = 0, end = 0) + scale_shape_discrete("NaCl (mM)")
 
 
-
-
 # germination in time multiplot -------------------------------------------
 
-grtplot <- plot_grid(G1, G2, G3, G4, G5, ncol = 1, labels = c("A", "B", "C", "D", "E"))
+grtplot <- ggdraw() +
+            draw_plot(G1, width = 0.95, height = 0.23, x = 0.0, y = 0.768) +
+            draw_plot(G2, width = 0.95, height = 0.21, x = 0.0, y = 0.576) +
+            draw_plot(G3, width = 0.95, height = 0.21, x = 0.0, y = 0.384) +
+            draw_plot(G4, width = 0.95, height = 0.21, x = 0.0, y = 0.192) +
+            draw_plot(G5, width = 0.95, height = 0.21, x = 0.0, y = 0.0) +
+            draw_plot_label(label = c("A", "B", "C", "D", "E"),
+                          x = c(0.92, 0.92, 0.92, 0.92, 0.92),
+                          y = c(0.95, 0.78, 0.58, 0.4, 0.2))
+
 
 cowplot::ggsave("img/grtplot.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
 
@@ -999,7 +1017,7 @@ lfa <-  GerminaR::fplot(sm, type = "bar",
              lmt = c(0, 200), 
              sig = "s", lgd = "none") + 
   scale_fill_grey("NaCl (mM)", start = 1, end = 0)+
-  scale_x_discrete("",labels = c("183", "114", "218", "171", "133")) 
+  scale_x_discrete("Genotypes",labels = c("183", "114", "218", "171", "133")) 
 
 # Index caculations -------------------------------------------------------
 
@@ -1024,7 +1042,7 @@ ldr <-  GerminaR::fplot(sm, type = "bar",
              lmt = c(0, .601), 
              sig = "s", lgd = "none") + 
   scale_fill_grey("NaCl (mM)", start = 1, end = 0)+
-  scale_x_discrete("",labels = c("183", "114", "218", "171", "133"))
+  scale_x_discrete("Genotypes",labels = c("183", "114", "218", "171", "133"))
 
 # swr ---------------------------------------------------------------------
 
@@ -1107,7 +1125,21 @@ rdr <-  GerminaR::fplot(sm, type = "bar",
 
 # multiplot index ---------------------------------------------------------
 
-rtplot <- plot_grid(hgt, rdr, std, sdr, lfa, ldr, ncol = 2, labels = c("A", "B", "C", "D", "E", "F"))
+
+rtplot <- ggdraw() +
+            draw_plot(hgt, width = 0.489, height = 0.33, x = 0.01, y = 0.62) +
+            draw_plot(std, width = 0.5, height = 0.33, x = 0.0, y = 0.31) +
+            draw_plot(lfa, width = 0.5, height = 0.33, x = 0.0, y = 0.0) +
+  
+            draw_plot(rdr, width = 0.5, height = 0.33, x = 0.5, y = 0.62) +
+            draw_plot(sdr, width = 0.508, height = 0.33, x = 0.493, y = 0.31) +
+            draw_plot(ldr, width = 0.5, height = 0.33, x = 0.5, y = 0.0) +
+            draw_plot_label(label = c("A", "C", "E", "B",  "D",  "F"),
+                          x = c(0.0, 0.0, 0.0, 0.5, 0.5, 0.5),
+                          y = c(0.9, 0.63, 0.32, 0.9, 0.63, 0.32 ))
+
+
+# rtplot <- plot_grid(hgt, rdr, std, sdr, lfa, ldr, ncol = 2, labels = c("A", "B", "C", "D", "E", "F"))
 
 
 cowplot::ggsave("img/rtplot.png", dpi= 300, width = 210*0.9 , height = 297*0.8, units = "mm")
