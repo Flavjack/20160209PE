@@ -160,13 +160,13 @@ gt <- fplot(data = git, type = "line", color = F,
             lgd = c(0.18, 0.68))
 
 gerv <- ggdraw() +
-            draw_plot(unc, width = 0.95, height = 0.268, x = 0.0, y = 0.00) +
-            draw_plot(syn, width = 0.98, height = 0.268, x = -0.03, y = 0.25) +
-            draw_plot(mgt, width = 0.95, height = 0.268, x = 0.0, y = 0.50) +
-            draw_plot(grp, width = 0.95, height = 0.268, x = 0.0, y = 0.75) +
+            draw_plot(grp, width = 0.95, height = 0.26, x = 0.0, y = 0.725) +
+            draw_plot(mgt, width = 0.95, height = 0.26, x = 0.0, y = 0.484) +
+            draw_plot(syn, width = 0.98, height = 0.26, x = -0.03, y = 0.242) +
+            draw_plot(unc, width = 0.94, height = 0.26, x = 0.013, y = 0.00) +
             draw_plot_label(label = c("A", "B", "C", "D"),
                           x = c(0.92, 0.92, 0.92, 0.92),
-                          y = c(1.00, 0.75, 0.50, 0.25))
+                          y = c(0.98, 0.74, 0.50, 0.25))
 
 
 cowplot::ggsave("img/gerv.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
@@ -253,13 +253,13 @@ ast <- fplot(data = mc, type = "bar", color = F,
              lgd = "none")
 
 bioquim <- ggdraw() +
-            draw_plot(ast, width = 0.965, height = 0.268, x = -0.005, y = 0.00) +
-            draw_plot(pst, width = 0.98, height = 0.268, x = -0.02, y = 0.25) +
-            draw_plot(amd, width = 0.98, height = 0.268, x = -0.02, y = 0.50) +
-            draw_plot(oleo, width = 0.955, height = 0.268, x = 0.005, y = 0.75) +
+            draw_plot(oleo, width = 0.955, height = 0.26, x = 0.005, y = 0.725) +
+            draw_plot(amd, width = 0.98, height = 0.26, x = -0.02, y = 0.483) +
+            draw_plot(pst, width = 0.98, height = 0.26, x = -0.02, y = 0.242) +
+            draw_plot(ast, width = 0.965, height = 0.26, x = -0.005, y = 0.00) +
             draw_plot_label(label = c("A", "B", "C", "D"),
                           x = c(0.92, 0.92, 0.92, 0.92),
-                          y = c(1.00, 0.75, 0.50, 0.25))
+                          y = c(0.98, 0.74, 0.50, 0.25))
 
 # bioquim <- cowplot::plot_grid(ncol = 1, oleo, amd, pst, ast, labels = c("A", "B", "C", "D"))
 cowplot::ggsave("img/bioquim.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
@@ -336,13 +336,13 @@ fts <- fplot(data = mc, type = "bar", color = F,
              lgd = "none")
 
 bioquim2 <- ggdraw() +
-            draw_plot(cst, width = 0.955, height = 0.268, x = -0.005, y = 0.75) +
-            draw_plot(scr, width = 0.925, height = 0.268, x = 0.025, y = 0.50) +
-            draw_plot(glc, width = 0.94, height = 0.268, x = 0.01, y = 0.25) +
-            draw_plot(fts, width = 0.95, height = 0.268, x = 0.00, y = 0.00) +
+            draw_plot(cst, width = 0.955, height = 0.26, x = -0.005, y = 0.725) +
+            draw_plot(scr, width = 0.925, height = 0.26, x = 0.025, y = 0.483) +
+            draw_plot(glc, width = 0.94, height = 0.26, x = 0.01, y = 0.242) +
+            draw_plot(fts, width = 0.95, height = 0.26, x = 0.00, y = 0.00) +
             draw_plot_label(label = c("A", "B", "C", "D"),
                           x = c(0.92, 0.92, 0.92, 0.92),
-                          y = c(1.00, 0.75, 0.50, 0.25))
+                          y = c(0.98, 0.74, 0.50, 0.25))
 
 # bioquim2 <- cowplot::plot_grid(ncol = 1, cst, scr, glc, fts, labels = c("A", "B", "C", "D"))
 cowplot::ggsave("img/bioquim2.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
@@ -1014,7 +1014,7 @@ lfa <-  GerminaR::fplot(sm, type = "bar",
              x = "Genotype", y =  "mean",  z = "Salt",
              ylab = "Leaf area (cm^2)" , xlab = "Genotypes",
              lgl = "NaCl (mM)" , erb = T,  
-             lmt = c(0, 200), 
+             lmt = c(0, 220), 
              sig = "s", lgd = "none") + 
   scale_fill_grey("NaCl (mM)", start = 1, end = 0)+
   scale_x_discrete("Genotypes",labels = c("183", "114", "218", "171", "133")) 
@@ -1039,7 +1039,7 @@ ldr <-  GerminaR::fplot(sm, type = "bar",
              x = "Genotype", y =  "mean",  z = "Salt",
              ylab = "Leaf dry weight ratio" , xlab = "Genotypes",
              lgl = "NaCl (mM)" , erb = T,  
-             lmt = c(0, .601), 
+             lmt = c(0, 0.58), 
              sig = "s", lgd = "none") + 
   scale_fill_grey("NaCl (mM)", start = 1, end = 0)+
   scale_x_discrete("Genotypes",labels = c("183", "114", "218", "171", "133"))
@@ -1061,7 +1061,7 @@ sdr <-  GerminaR::fplot(sm, type = "bar",
              x = "Genotype", y =  "mean",  z = "Salt",
              ylab = "Stem dry weight ratio" , xlab = "" ,
              lgl = "NaCl (mM)" , erb = T,
-             lmt = c(0,1),
+             lmt = c(0,0.95),
              sig = "s", lgd = "none") + 
   scale_fill_grey(expression("NaCl (mM)"), start = 1, end = 0)+
   scale_x_discrete("",labels = c("183", "114", "218", "171", "133")) +
