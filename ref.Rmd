@@ -6,4 +6,3 @@
 knitr::write_bib(c(
   .packages(), 'shiny', 'agricolae', 'ggplot2', 'bookdown', 'knitr', 'rmarkdown', 'DT', 'GerminaR', 'corrplot', 'FactoMineR'), 'packages.bib')
 ```
-
