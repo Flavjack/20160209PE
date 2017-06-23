@@ -1,3 +1,6 @@
+# Conclusion
+
+Results presented here, indicates that: 1) biometric parameters explain better the salinity response than the germination parameters. Thus, genotypes 114, 171 and 183 would be considered interesting candidates for salt stress tolerance, whereas genotypes 133 and 218 show sensitivity to NaCl addition. 2) the viability of germination and oil content in seeds of *J. curcas* can be maintained provided if there is control of moisture in the interstices of the seed during storage. 3) considering only salt stress experiments we can somehow describes that genotypes, 114, 171 and 183 could be considered as potential candidates for future breeding programs.
 
 # Acknowledgments
 
