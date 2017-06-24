@@ -5,8 +5,8 @@ rmd_files: [
   "intro.Rmd",
   "MM.Rmd",
   "result.Rmd",
-  "code.Rmd",
   "discussion.Rmd",
   "conclusion.Rmd",
+  "code.Rmd",
   "ref.Rmd"
   ]
