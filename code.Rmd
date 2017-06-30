@@ -169,8 +169,11 @@ gerv <- ggdraw() +
                           y = c(0.98, 0.74, 0.50, 0.25))
 
 
-cowplot::ggsave("img/gerv.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
-knitr::include_graphics("img/gerv.png")
+cowplot::ggsave("img/Fig_01.tiff", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
+
+cowplot::ggsave("img/Fig_01.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
+
+knitr::include_graphics("img/Fig_01.png")
 ```
 
 ```{r bioquimico, fig.align='center', fig.cap= "Oil content (A), starch (B), total soluble protein (C), total soluble amino acids (D) evaluated in *Jatropha curcas* seeds in genotype 171 stored for 0, 3, 6, 9 and 12 months. The bars represent the mean (± SE). The mean differences between the storage months are represented by the lower case letters (SNK, p = 0.05). n = 4"}
@@ -244,7 +247,7 @@ av <- aov(ast ~ mes, bqm)
 mc <- GerminaR::ger_testcomp(aov = av, comp = "mes")
 ast <- fplot(data = mc, type = "bar", color = F,
              x = "mes", xlab = "Storage (months)", 
-             y = "mean", ylab = "Total soluble aminoacids (g Kg^{-1} MS)",
+             y = "mean", ylab = "Total soluble amino acids (g Kg^{-1} MS)",
              z = "mes", 
              lmt = c(0, 29),
              brk = 3,
@@ -262,9 +265,11 @@ bioquim <- ggdraw() +
                           y = c(0.98, 0.74, 0.50, 0.25))
 
 # bioquim <- cowplot::plot_grid(ncol = 1, oleo, amd, pst, ast, labels = c("A", "B", "C", "D"))
-cowplot::ggsave("img/bioquim.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
+cowplot::ggsave("img/Fig_02.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
 
-knitr::include_graphics("img/bioquim.png")
+cowplot::ggsave("img/Fig_02.tiff", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
+
+knitr::include_graphics("img/Fig_02.png")
 ```
 
 ```{r bioquimico2, fig.align='center', fig.cap= "Total soluble carbohydrates (A), sucrose (B), glucose (C) and fructose (D) evaluated in *Jatropha curcas* seeds in genotype 171 were stored for 0, 3, 6, 9 and 12 months. The bars represent the mean (± SE). The mean differences between the storage months are represented by the lower case letters (SNK, p = 0.05). n = 4"}
@@ -345,9 +350,11 @@ bioquim2 <- ggdraw() +
                           y = c(0.98, 0.74, 0.50, 0.25))
 
 # bioquim2 <- cowplot::plot_grid(ncol = 1, cst, scr, glc, fts, labels = c("A", "B", "C", "D"))
-cowplot::ggsave("img/bioquim2.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
+cowplot::ggsave("img/Fig_03.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
 
-knitr::include_graphics("img/bioquim2.png")
+cowplot::ggsave("img/Fig_03.tiff", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
+
+knitr::include_graphics("img/Fig_03.png")
 ```
 
 
@@ -416,8 +423,11 @@ fisio <- ggdraw() +
                           y = c(0.99, 0.66, 0.34))
                           
 # fisio <- cowplot::plot_grid(ncol = 1, tra, yw, trs, labels = c("A", "B", "C", "D"))
-cowplot::ggsave("img/fisio.png", dpi= 300, width = 210*0.4 , height = 297*0.6, units = "mm")
-knitr::include_graphics("img/fisio.png")
+cowplot::ggsave("img/Fig_04.png", dpi= 300, width = 210*0.4 , height = 297*0.6, units = "mm")
+
+cowplot::ggsave("img/Fig_04.tiff", dpi= 300, width = 210*0.4 , height = 297*0.6, units = "mm")
+
+knitr::include_graphics("img/Fig_04.png")
 ```
 
 ```{r corr, eval=FALSE, fig.align='center', fig.cap= "Pearson correlation (p = 0.05) of the variables evaluated in *Jatropha curcas* seeds in genotype 171 stored for 0, 3, 6, 9 and 12 months. OIL, oil content; STR, starch; TSP, total soluble protein; TSA, total soluble amino acids; TSC, total soluble carbohydrates; SCR, sucrose; GLC, glucose; FTS, fructose; RWC, relative water content in seeds; WTP, water potential; SRR, seed respiration rate. "}
@@ -578,9 +588,11 @@ grmplot <- ggdraw() +
                           x = c(0.92, 0.92, 0.92, 0.92),
                           y = c(0.94, 0.74, 0.50, 0.25))
 
-cowplot::ggsave("img/grmplot.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
+cowplot::ggsave("img/Fig_05.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
 
-knitr::include_graphics("img/grmplot.png")
+cowplot::ggsave("img/Fig_05.tiff", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
+
+knitr::include_graphics("img/Fig_05.png")
 
 ```
 
@@ -719,9 +731,11 @@ grtplot <- ggdraw() +
                           y = c(0.95, 0.78, 0.58, 0.4, 0.2))
 
 
-cowplot::ggsave("img/grtplot.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
+cowplot::ggsave("img/Fig_06.png", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
 
-knitr::include_graphics("img/grtplot.png")
+cowplot::ggsave("img/Fig_06.tiff", dpi= 300, width = 210*0.4 , height = 297*0.9, units = "mm")
+
+knitr::include_graphics("img/Fig_06.png")
 
 ```
 
@@ -1142,9 +1156,11 @@ rtplot <- ggdraw() +
 # rtplot <- plot_grid(hgt, rdr, std, sdr, lfa, ldr, ncol = 2, labels = c("A", "B", "C", "D", "E", "F"))
 
 
-cowplot::ggsave("img/rtplot.png", dpi= 300, width = 210*0.9 , height = 297*0.8, units = "mm")
+cowplot::ggsave("img/Fig_07.png", dpi= 300, width = 210*0.9 , height = 297*0.8, units = "mm")
 
-knitr::include_graphics("img/rtplot.png")
+cowplot::ggsave("img/Fig_07.tiff", dpi= 300, width = 210*0.9 , height = 297*0.8, units = "mm")
+
+knitr::include_graphics("img/Fig_07.png")
 
 ```
 
@@ -1199,12 +1215,20 @@ bp <- fieldbook::plot_PCA(data = dtcr, type = "biplot", quali.sup = "GENOTYPE") 
 # summary(pca, nbelements = Inf, file="PCA.txt")
 
 ppi <- 300
-png("img/pca.png", width=12*ppi, height=10*ppi, res=ppi)
+png("img/Fig_08.tiff", width=12*ppi, height=10*ppi, res=ppi)
 
 bp
 
 graphics.off()
 
-knitr::include_graphics("img/pca.png")
+ppi <- 300
+png("img/Fig_08.png", width=12*ppi, height=10*ppi, res=ppi)
+
+bp
+
+graphics.off()
+
+
+knitr::include_graphics("img/Fig_8.png")
 
 ```
