@@ -146,7 +146,6 @@ unc <- fplot(data = mc, type = "bar", color = F,
 
 git <- ger_intime(Factor = "mes", SeedN = "smt", evalName = "g", data = grm) 
 
-
 gt <- fplot(data = git, type = "line", color = F,
             x = "evaluation", 
             y = "mean", 
@@ -155,9 +154,22 @@ gt <- fplot(data = git, type = "line", color = F,
             xlab = "days",
             erb = F, 
             lgl = "Storage (months)",
-            lmt = c(0,23), 
-            brk = 2, 
-            lgd = c(0.18, 0.68))
+            lmt = c(0,18), 
+            brk = 3, 
+            lgd = "top") +
+  
+    scale_x_discrete(name = "days", 
+                   labels = c("", "1", "", "3", "", 
+                              "5", "", "7", "","9","",
+                              "11", "", "13", "", "15",
+                              "", "17", "", "19", "",
+                              "21", "", "23", "", "25")
+    )                  
+                   
+
+
+cowplot::ggsave("img/Fig_gt01.tiff", dpi= 300, width = 210*0.4 , height = 297*0.25, units = "mm")
+
 
 gerv <- ggdraw() +
             draw_plot(grp, width = 0.95, height = 0.26, x = 0.0, y = 0.725) +
@@ -480,11 +492,23 @@ dtg <- fb %>%
 #dtg$Genotype <-   plyr::mapvalues(dtg$Genotype , from = c("G1", "G2", "G3", "G4", "G5"),
 #                                  to = c("183", "114", "218", "171", "133"))
 
-smg <- ger_summary(SeedN = "SDN", evalName = "D", data = dtg)
+smg <- ger_summary(SeedN = "SDN", evalName = "D", data = dtg) %>% 
+  mutate(Salt = as.factor(Salt))
 
 # germination percentage --------------------------------------------------
 
 av <- aov(GRP ~ Genotype*Salt, smg)
+
+
+tb_grp <- anova(av)[c(1, 3, 5)] %>%  as.data.frame() %>% 
+  rename(msq = "Mean Sq", fv = "Pr(>F)") %>% 
+  mutate(msq = as.character(round(msq,3))) %>% 
+  mutate(Fc = c("Genotype", "Salt", "(Genotype x Salt)", "Error")) %>% 
+  mutate(sg = if_else(fv <= 0.05, true =  "*", "ns", " ")) %>% 
+  unite(var, c("msq", "sg"), sep = " ", remove = FALSE) %>% 
+  select(Fc, Df, var) %>% 
+  rename(GRP = var, SV = Fc, DF = Df)
+
 mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>% 
   arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
   mutate( s = c("Ba", "Bb", "Bb", "Dc", "Ac", 
@@ -511,6 +535,18 @@ grp <-  GerminaR::fplot(mc, type = "bar", color = F, font = 0.8,
 
 
 av <- aov(MGT ~ Genotype*Salt, smg)
+
+
+tb_mgt <- anova(av)[c(1, 3, 5)] %>%  as.data.frame() %>% 
+  rename(msq = "Mean Sq", fv = "Pr(>F)") %>% 
+  mutate(msq = as.character(round(msq,3))) %>% 
+  mutate(Fc = c("Genotype", "Salt", "(Genotype x Salt)", "Error")) %>% 
+  mutate(sg = if_else(fv <= 0.05, true =  "*", "ns", " ")) %>% 
+  unite(var, c("msq", "sg"), sep = " ", remove = FALSE) %>% 
+  select(Fc, Df, var) %>% 
+  rename(MGT = var, SV = Fc, DF = Df)
+
+
 mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>% 
   arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
   mutate( s = c("Aa", "Ab", "Ab", "Ac",  
@@ -536,6 +572,17 @@ mgt <-  GerminaR::fplot(mc, type = "bar", color = F, lgd = "none", font = 0.8,
 # sinchrony ---------------------------------------------------------------
 
 av <- aov(SYN ~ Genotype*Salt, smg)
+
+tb_syn <- anova(av)[c(1, 3, 5)] %>%  as.data.frame() %>% 
+  rename(msq = "Mean Sq", fv = "Pr(>F)") %>% 
+  mutate(msq = as.character(round(msq,3))) %>% 
+  mutate(Fc = c("Genotype", "Salt", "(Genotype x Salt)", "Error")) %>% 
+  mutate(sg = if_else(fv <= 0.05, true =  "*", "ns", " ")) %>% 
+  unite(var, c("msq", "sg"), sep = " ", remove = FALSE) %>% 
+  select(Fc, Df, var) %>% 
+  rename(SYN = var, SV = Fc, DF = Df)
+
+
 mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>% 
   arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
   mutate( s = c("Aa", "Aa", "Aa", "Bb",  
@@ -560,6 +607,18 @@ syn <-  GerminaR::fplot(mc, type = "bar", color = F, lgd = "none", font = 0.8,
 # uncertany ---------------------------------------------------------------
 
 av <- aov(UNC ~ Genotype*Salt, smg)
+
+
+tb_unc <- anova(av)[c(1, 3, 5)] %>%  as.data.frame() %>% 
+  rename(msq = "Mean Sq", fv = "Pr(>F)") %>% 
+  mutate(msq = as.character(round(msq,3))) %>% 
+  mutate(Fc = c("Genotype", "Salt", "(Genotype x Salt)", "Error")) %>% 
+  mutate(sg = if_else(fv <= 0.05, true =  "*", "ns", " ")) %>% 
+  unite(var, c("msq", "sg"), sep = " ", remove = FALSE) %>% 
+  select(Fc, Df, var) %>% 
+  rename(UNC = var, SV = Fc, DF = Df)
+
+
 mc <- GerminaR::ger_testcomp(aov = av, comp = c("Genotype", "Salt")) %>% 
   arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
   mutate( s = c("Aa", "Aa", "Aa", "Bb", "Ac",
@@ -713,9 +772,11 @@ gnts <- gnts %>% mutate(Salt = factor(Salt, c(0, 50, 75, 100, 150)))
 
 slg <- fplot(data = gnts, type = "line", x = "evaluation", y = "mean", z = "Salt", 
             lmt = c(0,60), brk = 10, ylab = "Germinability ('%')", 
-            lgd = "none", lgl = "Sal (mM)", erb = F) +
+            lgd = "top", lgl = "Sal (mM)", erb = F) +
   scale_x_discrete(expression("day"), breaks = 0:25*1)+
   scale_color_grey("NaCl (mM)", start = 0, end = 0) + scale_shape_discrete("NaCl (mM)")
+
+cowplot::ggsave("img/Fig_gt02.tiff", dpi= 300, width = 210*0.4 , height = 297*0.25, units = "mm")
 
 
 # germination in time multiplot -------------------------------------------
@@ -956,7 +1017,17 @@ dtmv <- fb %>%
 # height (hgt)  -----------------------------------------------------------
 
 av <- aov(HGT.24 ~ Genotype*Salt, dtmv)
-# summary(av)
+
+tb_hgt <- anova(av)[c(1, 3, 5)] %>%  as.data.frame() %>% 
+  rename(msq = "Mean Sq", fv = "Pr(>F)") %>% 
+  mutate(msq = as.character(round(msq,3))) %>% 
+  mutate(Fc = c("Genotype", "Salt", "(Genotype x Salt)", "Error")) %>% 
+  mutate(sg = if_else(fv <= 0.05, true =  "*", "ns", " ")) %>% 
+  unite(var, c("msq", "sg"), sep = " ", remove = FALSE) %>% 
+  select(Fc, Df, var) %>% 
+  rename(HGT = var, SV = Fc, DF = Df)
+
+
 mc <- SNK.test(av, c("Genotype", "Salt"))
 sm <- dtsm(mc)
 
@@ -985,7 +1056,16 @@ hgt <-  GerminaR::fplot(sm, type = "bar",
 # stem diameter -----------------------------------------------------------
 
 av <- aov(STD.24 ~ Genotype*Salt, dtmv)
-# summary(av)
+
+tb_std <- anova(av)[c(1, 3, 5)] %>%  as.data.frame() %>% 
+  rename(msq = "Mean Sq", fv = "Pr(>F)") %>% 
+  mutate(msq = as.character(round(msq,3))) %>% 
+  mutate(Fc = c("Genotype", "Salt", "(Genotype x Salt)", "Error")) %>% 
+  mutate(sg = if_else(fv <= 0.05, true =  "*", "ns", " ")) %>% 
+  unite(var, c("msq", "sg"), sep = " ", remove = FALSE) %>% 
+  select(Fc, Df, var) %>% 
+  rename(STD = var, SV = Fc, DF = Df)
+
 mc <- SNK.test(av, c("Genotype", "Salt"))
 sm <- dtsm(mc)
 sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
@@ -1014,7 +1094,17 @@ std <-  GerminaR::fplot(sm, type = "bar",
 
 
 av <- aov(LFA ~ Genotype*Salt, dtmv)
-# summary(av)
+
+tb_lfa <- anova(av)[c(1, 3, 5)] %>%  as.data.frame() %>% 
+  rename(msq = "Mean Sq", fv = "Pr(>F)") %>% 
+  mutate(msq = as.character(round(msq,3))) %>% 
+  mutate(Fc = c("Genotype", "Salt", "(Genotype x Salt)", "Error")) %>% 
+  mutate(sg = if_else(fv <= 0.05, true =  "*", "ns", " ")) %>% 
+  unite(var, c("msq", "sg"), sep = " ", remove = FALSE) %>% 
+  select(Fc, Df, var) %>% 
+  rename(LFA = var, SV = Fc, DF = Df)
+
+
 mc <- SNK.test(av, c("Genotype", "Salt"))
 sm <- dtsm(mc)
 sm <- sm %>% arrange(Genotype, factor(Salt, levels = c(0, 50, 75, 100))) %>%
@@ -1038,7 +1128,17 @@ lfa <-  GerminaR::fplot(sm, type = "bar",
 # lwr ---------------------------------------------------------------------
 
 av <- aov(LWR ~ Genotype*Salt, dtmv)
-# summary(av)
+
+tb_lwr <- anova(av)[c(1, 3, 5)] %>%  as.data.frame() %>% 
+  rename(msq = "Mean Sq", fv = "Pr(>F)") %>% 
+  mutate(msq = as.character(round(msq,3))) %>% 
+  mutate(Fc = c("Genotype", "Salt", "(Genotype x Salt)", "Error")) %>% 
+  mutate(sg = if_else(fv <= 0.05, true =  "*", "ns", " ")) %>% 
+  unite(var, c("msq", "sg"), sep = " ", remove = FALSE) %>% 
+  select(Fc, Df, var) %>% 
+  rename(LWR = var, SV = Fc, DF = Df)
+
+
 mc <- SNK.test(av, c("Genotype", "Salt"))
 sm <- dtsm(mc)
 sm <- sm %>% mutate(s =
@@ -1061,7 +1161,17 @@ ldr <-  GerminaR::fplot(sm, type = "bar",
 # swr ---------------------------------------------------------------------
 
 av <- aov(SWR ~ Genotype*Salt, dtmv)
-# summary(av)
+
+tb_swr <- anova(av)[c(1, 3, 5)] %>%  as.data.frame() %>% 
+  rename(msq = "Mean Sq", fv = "Pr(>F)") %>% 
+  mutate(msq = as.character(round(msq,3))) %>% 
+  mutate(Fc = c("Genotype", "Salt", "(Genotype x Salt)", "Error")) %>% 
+  mutate(sg = if_else(fv <= 0.05, true =  "*", "ns", " ")) %>% 
+  unite(var, c("msq", "sg"), sep = " ", remove = FALSE) %>% 
+  select(Fc, Df, var) %>% 
+  rename(SWR = var, SV = Fc, DF = Df)
+
+
 mc <- SNK.test(av, c("Genotype", "Salt"))
 sm <- dtsm(mc)
 sm <- sm %>% 
@@ -1087,7 +1197,16 @@ sdr <-  GerminaR::fplot(sm, type = "bar",
 # stwr --------------------------------------------------------------------
 
 av <- aov(STWR ~ Genotype*Salt, dtmv)
-# summary(av)
+
+tb_stwr <- anova(av)[c(1, 3, 5)] %>%  as.data.frame() %>% 
+  rename(msq = "Mean Sq", fv = "Pr(>F)") %>% 
+  mutate(msq = as.character(round(msq,3))) %>% 
+  mutate(Fc = c("Genotype", "Salt", "(Genotype x Salt)", "Error")) %>% 
+  mutate(sg = if_else(fv <= 0.05, true =  "*", "ns", " ")) %>% 
+  unite(var, c("msq", "sg"), sep = " ", remove = FALSE) %>% 
+  select(Fc, Df, var) %>% 
+  rename(STWR = var, SV = Fc, DF = Df)
+
 mc <- SNK.test(av, c("Genotype", "Salt"))
 sm <- dtsm(mc)
 sm <- sm %>% 
@@ -1113,7 +1232,17 @@ stdr <-  GerminaR::fplot(sm, type = "bar",
 # rwr ---------------------------------------------------------------------
 
 av <- aov(RWR ~ Genotype*Salt, dtmv)
-# summary(av)
+
+tb_rwr <- anova(av)[c(1, 3, 5)] %>%  as.data.frame() %>% 
+  rename(msq = "Mean Sq", fv = "Pr(>F)") %>% 
+  mutate(msq = as.character(round(msq,3))) %>% 
+  mutate(Fc = c("Genotype", "Salt", "(Genotype x Salt)", "Error")) %>% 
+  mutate(sg = if_else(fv <= 0.05, true =  "*", "ns", " ")) %>% 
+  unite(var, c("msq", "sg"), sep = " ", remove = FALSE) %>% 
+  select(Fc, Df, var) %>% 
+  rename(RWR = var, SV = Fc, DF = Df)
+
+
 mc <- SNK.test(av, c("Genotype", "Salt"))
 sm <- dtsm(mc)
 sm <- sm %>% 
@@ -1135,6 +1264,37 @@ rdr <-  GerminaR::fplot(sm, type = "bar",
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
+
+
+
+# table -------------------------------------------------------------------
+
+tb_av <- right_join(tb_grp, tb_mgt, by = "SV") %>% 
+  right_join(tb_syn, by = "SV") %>% 
+  right_join(tb_unc, by = "SV") %>% 
+  right_join(tb_hgt, by = "SV") %>% 
+  right_join(tb_std, by = "SV") %>% 
+  right_join(tb_lfa, by = "SV") %>% 
+  right_join(tb_lwr, by = "SV") %>% 
+  right_join(tb_rwr, by = "SV") %>% 
+  right_join(tb_stwr, by = "SV") %>% 
+  right_join(tb_swr, by = "SV") 
+
+library(googlesheets)
+
+gss <- gs_ls()
+fb <- gs_url("https://docs.google.com/spreadsheets/d/1dllWXzFE9ndO4ujbT2JPynvp9sDrDLpG5YCRO0KJn-c/edit#gid=439833954") 
+
+# dt <- fb %>% gs_read(ws = "dataset") 
+
+# gs_ws_delete(ss = fb, ws = "summary av") 
+
+gs_ws_new(
+  ss = fb,
+  ws_title = "summary AOV",
+  input = tb_av,
+  trim = TRUE,
+  verbose = FALSE)
 
 
 # multiplot index ---------------------------------------------------------
