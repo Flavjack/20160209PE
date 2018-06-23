@@ -1,12 +1,12 @@
 book_filename: "20160209PE"
 output_dir: docs
 rmd_files: [
-  "index.Rmd", 
-  "intro.Rmd",
-  "MM.Rmd",
-  "result.Rmd",
-  "discussion.Rmd",
-  "conclusion.Rmd",
-  "code.Rmd",
-  "ref.Rmd"
+  "index.Rmd"#, 
+#  "intro.Rmd",
+#  "MM.Rmd",
+#  "result.Rmd",
+#  "discussion.Rmd",
+#  "conclusion.Rmd",
+#  "code.Rmd",
+#  "ref.Rmd"
   ]
